@@ -1,5 +1,5 @@
 module.exports = app => {
-    app.post('/singup', app.api.)
+    app.post('/singup', app.api)
     app.post('/singin', app.api.auth.singin)
     app.post('/validateToken', app.api.auth.validateToken)
 
@@ -13,7 +13,4 @@ module.exports = app => {
     app.route('/vagas/:empresa_id')
         .post(app.api.empresa)
         .get(app.api.empresa.getVagasByEmpresaId)
-
-
-
 }

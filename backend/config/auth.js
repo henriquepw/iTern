@@ -1,4 +1,6 @@
-const { autoSecret } = require('../.env')
+const {
+    autoSecret
+} = require('../.env')
 const jwt = require('jwt-simple')
 const bcrypt = require('bcrypt-nodejs')
 
@@ -8,16 +10,16 @@ module.exports = app => {
             return res.status(400).send('informe usuário e senha!')
         }
 
-        const user = await = app.db('users')
-            .where( email: req.budy.email)
-            .first()
+        /*const user = await app.db('users')
+            .where(email: req.budy.email)
+            .first()*/
 
-        if(!user)
+        if (!user)
             return res.status(400).send('Usuário não encontrado!')
 
         const isMatch = bcrypt.compareSync(req.body.password, user.password)
 
-        if(!isMatch)
+        if (!isMatch)
             return res.status(401).send('Email e/ou senha invalido(s)')
 
         const payload = {
@@ -26,23 +28,23 @@ module.exports = app => {
             exp: now + (60 * 60 * 24 * 3)
         }
 
-        res.json(
+        res.json({
             ...payload,
             token: jwt.encode(payload, autoSecret)
-        )
+        })
     }
 
     const validateToken = async (req, res) => {
         const userData = req.body || null
 
         try {
-            if(userData) {
+            if (userData) {
                 const token = jwt.decode(userData.token, autoSecret)
-                if(new Date(token.exp * 1000) > new Date()){
+                if (new Date(token.exp * 1000) > new Date()) {
                     return res.send(true)
                 }
             }
-        } catch(msg) {
+        } catch (msg) {
             // problem token
             res.send(400).send('Acessor invalido!')
         }
