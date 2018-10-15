@@ -1,10 +1,8 @@
 module.exports = {
   autoSecret: '123456',
   db: {
-    host: '127.0.0.1',
-    port: 3000,
-    database: 'iTern',
+    database: 'my_db',
     user: 'postgres',
-    password: 'ifpb'
+    password: 'pass'
   }
 }

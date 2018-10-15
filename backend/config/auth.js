@@ -1,6 +1,4 @@
-const {
-    autoSecret
-} = require('../.env')
+const { autoSecret } = require('../.env')
 const jwt = require('jwt-simple')
 const bcrypt = require('bcrypt-nodejs')
 
