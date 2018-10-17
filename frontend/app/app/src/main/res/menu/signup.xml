@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/icCompany"
+        android:title="Empresa"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/icStudenty"
+        android:title="Estudante"
+        app:showAsAction="always" />
+</menu>

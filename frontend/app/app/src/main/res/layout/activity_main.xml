@@ -22,25 +22,24 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe"
+    <FrameLayout
+        android:id="@+id/fragContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/appBarLayout" />
+
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
         android:layout_above="@+id/bottomBar"
-        android:layout_below="@+id/appBarLayout">
-
-        <FrameLayout
-            android:id="@+id/fragContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </android.support.v4.widget.SwipeRefreshLayout>
+        android:background="@color/accent" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:menu="@menu/bar"/>
+        app:menu="@menu/bar" />
 
 </RelativeLayout>

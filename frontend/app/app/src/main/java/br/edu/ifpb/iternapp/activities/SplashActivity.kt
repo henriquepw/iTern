@@ -8,7 +8,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import br.edu.ifpb.iternapp.R
 
-class SplashActivity : AppCompatActivity(){
+class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +25,7 @@ class SplashActivity : AppCompatActivity(){
             override fun run() {
                 super.run()
                 try {
-                    Thread.sleep(2000)
+                    Thread.sleep(500)
 
                     val intent = Intent(baseContext, LoginActivity::class.java)
                     startActivity(intent)
