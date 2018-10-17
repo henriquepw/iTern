@@ -25,9 +25,9 @@ class SplashActivity : AppCompatActivity(){
             override fun run() {
                 super.run()
                 try {
-                    Thread.sleep(4000)
+                    Thread.sleep(2000)
 
-                    val intent = Intent(baseContext, MainActivity::class.java)
+                    val intent = Intent(baseContext, LoginActivity::class.java)
                     startActivity(intent)
                     finish()
                 } catch (e: Exception) {
