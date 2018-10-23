@@ -1,8 +1,11 @@
 const { db } = require('./.env')
 
 module.exports = {
-  development: {
-    client: 'pg',
-    connection: 'postgres://localhost/iTern'
+  client: 'pg',
+  connection: {
+    host : '127.0.0.1',
+    user : 'postgres',
+    password : '1111',
+    database : 'iTern'
   }
 }
