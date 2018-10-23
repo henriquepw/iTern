@@ -39,7 +39,7 @@ CREATE TABLE vacancy (
 	company_id integer,
 	name varchar(255) not null,
 	occupation_area varchar(20) not null,
-	grant double precision not null,
+	scholarship double precision not null,
 	description varchar(255) not null,
 	street varchar(255) not null,
     number integer not null,
@@ -97,8 +97,6 @@ CREATE TABLE student_social (
     foreign key (student_id)
     references student(id)
 );
-
-
 
 CREATE TABLE requirement(
     id integer,
