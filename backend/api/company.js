@@ -1,36 +1,40 @@
 module.exports = app => {
     const insert = (req, res) => {
-        const student = { ...req.body }
+        const company = { ...req.body }
         
-        app.db('student')
-            .insert(student)
+        app.db('company')
+            .insert(company)
             .then(_ => res.status(204).send())
             .catch(err => res.status(500).send(err))
     }
 
     const update = (req, res) => {
-        const student = { ...req.body }
+        const company = { ...req.body }
 
-        app.db('student')
-            .update(student)
-            .where({ id : student.id })
+        app.db('company')
+            .update(company)
+            .where({ id: company.id })
             .then(_ => res.status(204).send())
             .catch(err => res.status(500).send(err))
     }
 
     const signin = (req, res) => {
-        const student = { ...req.body }
-
-        app.db('student')
+        app.db('company')
             .select()
-            where({
-                email: req.body.email,
-                password: req.body.password
-            })
+            .where({
+                email: req.header.email,
+                password: req.header.password })
             .first()
             .then(student => res.json(student))
             .catch(err => res.status(500).send(err))
         }
 
-    return { insert, update }
+    const get = (req, res) => {
+        app.db('student')
+            .select()
+            .then(students => res.json(students))
+            .catch(err => res.status(500).send(err))
+    }
+    
+    return { insert, update, signin, get }
 }

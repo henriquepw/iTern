@@ -13,7 +13,7 @@ module.exports = app => {
 
         app.db('student')
             .update(student)
-            .where({ id : student.id })
+            .where({ id: student.id })
             .then(_ => res.status(204).send())
             .catch(err => res.status(500).send(err))
     }
@@ -23,18 +23,30 @@ module.exports = app => {
     }
 
     const signin = (req, res) => {
-        const student = { ...req.body }
-
         app.db('student')
-            .select()
-            where({ 
-                email: req.body.email,
-                password: req.body.password
-                })
+            .select('id')
+            .where({ 
+                email: req.header('email'),
+                password: req.header('password') })
             .first()
             .then(student => res.json(student))
             .catch(err => res.status(500).send(err))    
     }
 
-    return { insert, update, remove }
+    const get = (req, res) => {
+        app.db('student')
+            .select()
+            .then(students => res.json(students))
+    }
+
+    const getById = (req, res) => {
+        app.db('student')
+            .select()
+            .where({ id: req.params.id })
+            .first()
+            .then(student => res.json(student))
+            .catch(err => res.status(500).send(err))  
+    }
+
+    return { insert, update, remove, signin, get, getById }
 }

@@ -21,11 +21,11 @@ class MainActivity : AppCompatActivity() {
                 startFragment(HomeFragment())
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navSearch -> {
+            R.id.navSettings -> {
                 startFragment(SettingsFragment())
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navSettings -> {
+            R.id.navSearch -> {
                 startFragment(SearchFragment())
                 return@OnNavigationItemSelectedListener true
             }

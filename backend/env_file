@@ -1,8 +1,9 @@
 module.exports = {
   autoSecret: '123456',
   db: {
-    database: 'my_db',
-    user: 'postgres',
-    password: 'pass'
+    host : '127.0.0.1',
+    user : 'postgres',
+    password : 'senha',
+    database : 'my_db'
   }
 }

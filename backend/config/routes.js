@@ -1,10 +1,17 @@
 module.exports = app => {
-    app.post('/student/singup', app.api.student.insert)
-    app.post('/company/singup', app.api.company.insert)
+    app.get('/student/signin', app.api.student.signin)
+    app.get('/company/signin', app.api.company.signin)
 
-    /*
-    app.route('/empresas')
-        .get(app.api.empresa.get)
-        .post(app.api.empresa.insert)
-    */
+    app.route('/student')
+        .post(app.api.student.insert)
+        .get(app.api.student.get)
+
+    app.route('/student/:id')
+        .put(app.api.student.update)
+        .get(app.api.student.getById)
+        .delete(app.api.student.remove)
+
+    app.route('/company')
+        .post(app.api.company.insert)
+        .get(app.api.company.get)
 }

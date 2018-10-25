@@ -1,147 +1,147 @@
 CREATE TABLE  company (
-    id integer,
-    email varchar(65) unique not null,
-    password varchar(30) not null,
-    cnpj integer not null,
-    razao_social varchar(255) not null,
-    street varchar(255) not null,
-    num integer not null,
-    neighborhood varchar(255) not null,
-    city varchar(20) not null,
-    postal_code varchar(20) not null,
-    state varchar(20) not null,
-    country varchar(20) not null,
-    primary key (id)
+    id SERIAL,
+    email VARCHAR(65) UNIQUE NOT NULL,
+    password VARCHAR(30) NOT NULL,
+    cnpj VARCHAR(15) NOT NULL,
+    razao_social VARCHAR(255) NOT NULL,
+    street VARCHAR(255) NOT NULL,
+    num INTEGER NOT NULL,
+    neighborhood VARCHAR(255) NOT NULL,
+    city VARCHAR(20) NOT NULL,
+    postal_code VARCHAR(20) NOT NULL,
+    state VARCHAR(20) NOT NULL,
+    country VARCHAR(20) NOT NULL,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE student (
-    id integer,
-    email varchar(65) unique not null,
-    password varchar(30) not null,
-    name varchar(255) not null,
-    birthday date not null,
-    street varchar(255) not null,
-    number integer not null,
-    neighborhood varchar(255) not null,
-    city varchar(20) not null,
-    postal_code varchar(20) not null,
-    state varchar(20) not null,
-    url_lattes varchar(255) not null,
-    cpf integer unique not null,
-    rg integer unique not null,
-    birth_place varchar(20) not null,
-    citizenship varchar(20) not null,
-	primary key (id)
+    id SERIAL,
+    email VARCHAR(65) UNIQUE NOT NULL,
+    password VARCHAR(30) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    birthday date NOT NULL,
+    street VARCHAR(255) NOT NULL,
+    number INTEGER NOT NULL,
+    neighborhood VARCHAR(255) NOT NULL,
+    city VARCHAR(20) NOT NULL,
+    postal_code VARCHAR(20) NOT NULL,
+    state VARCHAR(20) NOT NULL,
+    url_lattes VARCHAR(255),
+    cpf VARCHAR(15) UNIQUE NOT NULL,
+    rg VARCHAR(10) UNIQUE NOT NULL,
+    birth_place VARCHAR(20) NOT NULL,
+    citizenship VARCHAR(20) NOT NULL,
+	PRIMARY KEY (id)
 );
 
 CREATE TABLE vacancy (
-	id integer,
-	company_id integer,
-	name varchar(255) not null,
-	occupation_area varchar(20) not null,
-	scholarship double precision not null,
-	description varchar(255) not null,
-	street varchar(255) not null,
-    number integer not null,
-    neighborhood varchar(255) not null,
-    city varchar(20) not null,
-    postal_code varchar(20) not null,
-    state varchar(20) not null,
-    primary key (id),
-    foreign key (company_id)
-    references company (id)
+	id SERIAL,
+	company_id INTEGER,
+	name VARCHAR(255) NOT NULL,
+	occupation_area VARCHAR(20) NOT NULL,
+	scholarship DOUBLE PRECISION NOT NULL,
+	description VARCHAR(255) NOT NULL,
+	street VARCHAR(255) NOT NULL,
+    number INTEGER NOT NULL,
+    neighborhood VARCHAR(255) NOT NULL,
+    city VARCHAR(20) NOT NULL,
+    postal_code VARCHAR(20) NOT NULL,
+    state VARCHAR(20) NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (company_id)
+        REFERENCES company (id)
 );
 
 CREATE TABLE institution (
-    id integer,
-    name varchar(40) unique not null,
-    acronym varchar(10) unique not null,
-    state varchar(20) not null,
-    campus varchar(20) not null,
-    primary key (id)
+    id SERIAL,
+    name VARCHAR(40) UNIQUE NOT NULL,
+    acronym VARCHAR(10) UNIQUE NOT NULL,
+    state VARCHAR(20) NOT NULL,
+    campus VARCHAR(20) NOT NULL,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE student_course (
-	id integer,
-    student_id integer,
-    institution_id integer,
-    name varchar(255) not null,
-    reference_period varchar(6) not null,
-    ingress_period varchar(6) not null,
-    ingress_way varchar(10) not null,
-    conclusion_year  varchar(6) not null,
-    IRA double precision not null,
-    shift varchar(10) not null,
-    primary key (id),
-    foreign key (student_id)
-    references student(id),
-    foreign key (institution_id)
-    references institution(id)
+	id SERIAL,
+    student_id INTEGER,
+    institution_id INTEGER,
+    name VARCHAR(255) NOT NULL,
+    reference_period VARCHAR(6) NOT NULL,
+    ingress_period VARCHAR(6) NOT NULL,
+    ingress_way VARCHAR(10) NOT NULL,
+    conclusion_year VARCHAR(6) NOT NULL,
+    IRA DOUBLE PRECISION NOT NULL,
+    shift VARCHAR(10) NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (student_id)
+        REFERENCES student(id),
+    FOREIGN KEY (institution_id)
+        REFERENCES institution(id)
 );	
 
 CREATE TABLE student_telephone (
-    id integer,
-    student_id integer,
-    telephone_number integer unique not null,
-    primary key (id),
-    foreign key (student_id)
-    references student(id)
+    id SERIAL,
+    student_id INTEGER,
+    telephone_number INTEGER UNIQUE NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (student_id)
+        references student(id)
 );
 
 CREATE TABLE student_social (
-    id integer,
-    student_id integer,
-    name varchar(20) not null,
-    url_profile varchar(255) not null,
-    primary key (id),
-    foreign key (student_id)
-    references student(id)
+    id SERIAL,
+    student_id INTEGER,
+    name VARCHAR(20) NOT NULL,
+    url_profile VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (student_id)
+        REFERENCES student(id)
 );
 
-CREATE TABLE requirement(
-    id integer,
-    requirement varchar(100),
-    primary key (id)
+CREATE TABLE requirement (
+    id SERIAL,
+    requirement VARCHAR(100),
+    PRIMARY KEY (id)
 );
 	
-CREATE TABLE student_vacancy(
-    student_id integer,
-    vacancy_id integer,
-    foreign key (student_id)
-    references student(id),
-    foreign key (vacancy_id)
-    references vacancy(id)
+CREATE TABLE student_vacancy (
+    student_id INTEGER,
+    vacancy_id INTEGER,
+    FOREIGN KEY (student_id)
+        REFERENCES student(id),
+    FOREIGN KEY (vacancy_id)
+        REFERENCES vacancy(id)
 );
 
-CREATE TABLE occupation_area(
-    id integer,
-    occupation_area varchar(100),
-    primary key (id)
+CREATE TABLE occupation_area (
+    id SERIAL,
+    occupation_area VARCHAR(100),
+    PRIMARY KEY (id)
 );
 
-CREATE TABLE student_occupation_area(
-    student_id integer,
-    occupation_area_id integer,
-    foreign key (student_id)
-    references student(id),
-    foreign key (occupation_area_id)
-    references occupation_area(id)
+CREATE TABLE student_occupation_area (
+    student_id INTEGER,
+    occupation_area_id INTEGER,
+    FOREIGN KEY (student_id)
+        REFERENCES student(id),
+    FOREIGN KEY (occupation_area_id)
+        REFERENCES occupation_area(id)
 );
 
-CREATE TABLE vacancy_occupation_area(
-    vacancy_id integer,
-    occupation_area_id integer,
-    foreign key (vacancy_id)
-    references vacancy(id),
-    foreign key (occupation_area_id)
-    references occupation_area(id)
+CREATE TABLE vacancy_occupation_area (
+    vacancy_id INTEGER,
+    occupation_area_id INTEGER,
+    FOREIGN KEY (vacancy_id)
+        REFERENCES vacancy(id),
+    FOREIGN KEY (occupation_area_id)
+        REFERENCES occupation_area(id)
 );
 
-CREATE TABLE vacancy_requirement(
-    vacancy_id integer,
-    requirement_id integer,
-    foreign key (vacancy_id)
-    references vacancy(id),
-    foreign key (requirement_id)
-    references requirement(id)
+CREATE TABLE vacancy_requirement (
+    vacancy_id INTEGER,
+    requirement_id INTEGER,
+    FOREIGN KEY (vacancy_id)
+        REFERENCES vacancy(id),
+    FOREIGN KEY (requirement_id)
+        REFERENCES requirement(id)
 );

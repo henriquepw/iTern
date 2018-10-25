@@ -11,5 +11,5 @@ consign()
     .into(app)
 
 app.listen(3000, () => {
-    console.log('Backend init...')
+    console.log('Backend started on port 3000...')
 })
