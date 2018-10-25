@@ -20,7 +20,7 @@ module.exports = app => {
 
     const signin = (req, res) => {
         app.db('company')
-            .select()
+            .select('id')
             .where({
                 email: req.header.email,
                 password: req.header.password })
@@ -36,5 +36,14 @@ module.exports = app => {
             .catch(err => res.status(500).send(err))
     }
     
-    return { insert, update, signin, get }
+    const getById = (req, res) => {
+        app.db('company')
+            .select()
+            .where({ id: req.params.id })
+            .first()
+            .then(company => res.json(company))
+            .catch(err => res.status(500).send(err))  
+    }
+
+    return { insert, update, signin, get, getById }
 }
