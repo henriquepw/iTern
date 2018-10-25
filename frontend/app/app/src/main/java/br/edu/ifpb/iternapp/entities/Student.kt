@@ -18,4 +18,4 @@ data class Student (
         var email: String,
         var password: String )
 
-
+data class SignIn ( var id: String )

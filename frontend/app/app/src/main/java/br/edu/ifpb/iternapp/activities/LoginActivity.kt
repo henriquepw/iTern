@@ -12,19 +12,22 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 
 import android.Manifest.permission.READ_CONTACTS
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.util.Log
+import android.widget.Toast
 import br.edu.ifpb.iternapp.R
+import br.edu.ifpb.iternapp.conection.Server
+import br.edu.ifpb.iternapp.entities.Student
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlin.math.log
 
-/**
- * A login screen that offers login via email/password.
- */
 class LoginActivity : AppCompatActivity(){
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
+
     private var mAuthTask: UserLoginTask? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,6 +81,7 @@ class LoginActivity : AppCompatActivity(){
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
+    @SuppressLint("CheckResult")
     private fun attemptLogin() {
         if (mAuthTask != null) {
             return
@@ -112,16 +116,39 @@ class LoginActivity : AppCompatActivity(){
             cancel = true
         }
 
-        if (!cancel) {
+        if (cancel) {
             /*
                 There was an error; don't attempt login and focus the first
                 form field with an error.
             */
             focusView?.requestFocus()
         } else {
-            intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            //finish()
+
+            var server = Server()
+
+            var student = ""
+
+            server.service.signinStudent(email.text.toString(), password.text.toString())
+                    .subscribeOn(Schedulers.io())
+                    .unsubscribeOn(Schedulers.computation())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({
+                        msg -> student = msg.id
+                    },
+                    {
+                        e ->
+                        run {
+                            Toast.makeText(applicationContext, "Erro ${e.message}", Toast.LENGTH_SHORT).show()
+                            Log.v("Error", e.message)
+                        }
+                    },
+                    {
+                        Toast.makeText(applicationContext, "Foi $student", Toast.LENGTH_SHORT).show()
+                        intent = Intent(this, MainActivity::class.java)
+                        intent.putExtra("student", student)
+                        startActivity(intent)
+                        //finish()
+                    })
         }
     }
 
@@ -132,7 +159,7 @@ class LoginActivity : AppCompatActivity(){
 
     private fun isPasswordValid(password: String): Boolean {
         //TODO: Replace this with your own logic
-        return password.length > 4
+        return password.length >= 4
     }
 
     /**

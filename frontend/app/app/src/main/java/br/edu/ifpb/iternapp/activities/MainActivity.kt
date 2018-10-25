@@ -18,7 +18,10 @@ class MainActivity : AppCompatActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navHome -> {
-                startFragment(HomeFragment())
+                val user = intent.getStringExtra("user")
+                val frag = HomeFragment()
+                frag.setTitule(user)
+                startFragment(frag)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navSettings -> {
