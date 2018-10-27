@@ -5,7 +5,7 @@ CREATE TABLE  company (
     cnpj VARCHAR(15) NOT NULL,
     razao_social VARCHAR(255) NOT NULL,
     street VARCHAR(255) NOT NULL,
-    num INTEGER NOT NULL,
+    number INTEGER NOT NULL,
     neighborhood VARCHAR(255) NOT NULL,
     city VARCHAR(20) NOT NULL,
     postal_code VARCHAR(20) NOT NULL,
@@ -52,23 +52,13 @@ CREATE TABLE vacancy (
         REFERENCES company (id)
 );
 
-CREATE TABLE institution (
-    id SERIAL,
-    name VARCHAR(40) UNIQUE NOT NULL,
-    acronym VARCHAR(10) UNIQUE NOT NULL,
-    state VARCHAR(20) NOT NULL,
-    campus VARCHAR(20) NOT NULL,
-    PRIMARY KEY (id)
-);
-
 CREATE TABLE student_course (
 	id SERIAL,
     student_id INTEGER,
-    institution_id INTEGER,
+    institution VARCHAR(100),
     name VARCHAR(255) NOT NULL,
-    reference_period VARCHAR(6) NOT NULL,
+    reference_period INTEGER NOT NULL,
     ingress_period VARCHAR(6) NOT NULL,
-    ingress_year VARCHAR(6) NOT NULL,
     ingress_way VARCHAR(10) NOT NULL,
     conclusion_year VARCHAR(6) NOT NULL,
     IRA DOUBLE PRECISION NOT NULL,
@@ -83,7 +73,7 @@ CREATE TABLE student_course (
 CREATE TABLE student_telephone (
     id SERIAL,
     student_id INTEGER,
-    telephone_number INTEGER UNIQUE NOT NULL,
+    telephone_number VARCHAR(15) UNIQUE NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (student_id)
         references student(id)
@@ -104,7 +94,16 @@ CREATE TABLE requirement (
     requirement VARCHAR(100),
     PRIMARY KEY (id)
 );
-	
+
+CREATE TABLE vacancy_requirement (
+    vacancy_id INTEGER,
+    requirement_id INTEGER,
+    FOREIGN KEY (vacancy_id)
+        REFERENCES vacancy(id),
+    FOREIGN KEY (requirement_id)
+        REFERENCES requirement(id)
+);
+
 CREATE TABLE student_vacancy (
     student_id INTEGER,
     vacancy_id INTEGER,
@@ -138,11 +137,3 @@ CREATE TABLE vacancy_occupation_area (
         REFERENCES occupation_area(id)
 );
 
-CREATE TABLE vacancy_requirement (
-    vacancy_id INTEGER,
-    requirement_id INTEGER,
-    FOREIGN KEY (vacancy_id)
-        REFERENCES vacancy(id),
-    FOREIGN KEY (requirement_id)
-        REFERENCES requirement(id)
-);
