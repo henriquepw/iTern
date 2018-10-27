@@ -2,9 +2,15 @@ module.exports = app => {
     const insert = (req, res) => {
         const student = { ...req.body }
         
+        console.log({ ...student })
+
         app.db('student')
             .insert(student)
-            .then(_ => res.status(204).send())
+            .returning('id')
+            .then(id => {
+                res.json({ id: id[0] })
+                console.log(id[0])
+            })
             .catch(err => res.status(500).send(err))
     }
 

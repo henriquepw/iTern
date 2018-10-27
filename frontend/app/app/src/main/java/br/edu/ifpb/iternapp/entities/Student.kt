@@ -1,20 +1,19 @@
 package br.edu.ifpb.iternapp.entities
 
-data class Student (
-        val id: Int,
+data class Student(
         var email: String,
         var password: String,
         var name: String,
-        val birthday: java.util.Date,
+        var birthday: String,
         var street: String,
-        var number: String,
+        var number: Int,
         var neighborhood: String,
         var city: String,
         var postal_code: String,
         var state: String,
-        var lattes: String? = null,
-        val rg: Int? = null,
-        val cpf: Int? = null,
-        val birthplace: String? = null,
-        var citizenship: String? = null
+        var url_lattes: String,
+        var rg: String,
+        var cpf: String,
+        var birth_place: String,
+        var citizenship: String
 )

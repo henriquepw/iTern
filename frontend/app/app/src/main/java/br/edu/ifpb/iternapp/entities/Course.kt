@@ -10,4 +10,4 @@ data class Course(
         var conclusion_year: String,
         var ira: Double,
         val shift: String
-)
+) 

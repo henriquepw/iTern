@@ -1,7 +1,9 @@
 package br.edu.ifpb.iternapp.conection
 
 import br.edu.ifpb.iternapp.entities.SignIn
+import br.edu.ifpb.iternapp.entities.Student
 import io.reactivex.Observable
+import retrofit2.http.Body
 
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -12,7 +14,7 @@ interface APIService {
 
     // Student ----------
     @POST("student")
-    fun insertStudent(): Unit
+    fun insertStudent(@Body student: Student): Observable<SignIn>
 
 
     @GET("student/signin")

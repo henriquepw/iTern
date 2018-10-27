@@ -124,7 +124,7 @@ class LoginActivity : AppCompatActivity() {
 
             var server = Server()
 
-            var student = ""
+            var student = 0
 
             server.service.signinStudent(email.text.toString(), password.text.toString())
                     .subscribeOn(Schedulers.io())

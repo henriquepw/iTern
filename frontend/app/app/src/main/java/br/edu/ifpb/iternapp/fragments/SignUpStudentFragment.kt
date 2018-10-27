@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.design.widget.TextInputEditText
 import android.support.v4.app.Fragment
 import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,15 +14,18 @@ import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
 
 import br.edu.ifpb.iternapp.R
+import br.edu.ifpb.iternapp.conection.Server
+import br.edu.ifpb.iternapp.entities.Student
 import com.github.rtoshiro.util.format.SimpleMaskFormatter
 import com.github.rtoshiro.util.format.text.MaskTextWatcher
-import kotlinx.android.synthetic.main.dialog_network_choice.view.*
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_signup_student.*
+import java.sql.Date
 
 
 class SignUpStudentFragment : Fragment() {
 
-    private var builder: AlertDialog.Builder? = null
     private var dialog: Dialog? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -32,10 +36,11 @@ class SignUpStudentFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        builder = AlertDialog.Builder(activity)
-
         setMask(txDate, "NN/NN/NNNN")
         setMask(txPhone, "(NN) NNNNN-NNNN")
+        setMask(txCourseReferencePeriod, "N")
+        setMask(txCourseIngressYear, "NNNN.N")
+        setMask(txCourseConclusionYear, "NNNN")
 
         val states = arrayOf(
                 "Acre (AC)", "Alagoas (AL)", "Amapá (AP)", "Amazonas (AM)",
@@ -52,7 +57,7 @@ class SignUpStudentFragment : Fragment() {
 
         spStates.onItemClickListener = OnItemClickListener { parent, view, position, id ->
             state = states[position]
-            Toast.makeText(activity, "Foi ${states[position]}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "${states[position]}", Toast.LENGTH_SHORT).show()
         }
 
         btNext.setOnClickListener {
@@ -60,25 +65,20 @@ class SignUpStudentFragment : Fragment() {
             var focusView: View? = null
 
             val textViews = arrayOf(
-                    txEemail,
-                    txPassword,
-                    txName,
-                    txDate,
-                    txCpf,
-                    txRG,
-                    txNaturalidade,
-                    txNacionalidade,
-                    txPhone,
-                    txStreet,
-                    txNumber,
-                    txNeigh,
-                    txCity,
-                    txPostalCode)
-
+                    txEemail, txPassword,
+                    txName, txDate,
+                    txCpf, txRG,
+                    txNaturalidade, txNacionalidade,
+                    txPhone, txStreet,
+                    txNumber, txNeigh,
+                    txCity, txPostalCode/*,
+                    txCourseName, txCourseReferencePeriod,
+                    txCourseIngressYear, txCourseIngressWay,
+                    txCourseInstitution, txCourseIRA,
+                    txCourseShift, txCourseConclusionYear*/)
             textViews.reverse()
 
             spStates.error = null
-
             for (tx in textViews)
                 tx.error = null
 
@@ -95,7 +95,7 @@ class SignUpStudentFragment : Fragment() {
                 cancel = true
             }
 
-            if (txPassword.text.toString().length > 4) {
+            if (txPassword.text.toString().length < 5) {
                 txPassword.error = "Pelo menos 5 caracteres"
                 focusView = txPassword
                 cancel = true
@@ -113,6 +113,18 @@ class SignUpStudentFragment : Fragment() {
                 cancel = true
             }
 
+            /*if (txCourseIngressYear.text.toString().length != 6) {
+                txCourseIngressYear.error = "Campo incompleto"
+                focusView = txCourseIngressYear
+                cancel = true
+            }
+
+            if (txCourseConclusionYear.text.toString().length != 4) {
+                txCourseConclusionYear.error = "Campo incompleto"
+                focusView = txCourseConclusionYear
+                cancel = true
+            }*/
+
             for (tx in 0 until textViews.size) {
                 if (TextUtils.isEmpty(textViews[tx].text.toString())) {
                     textViews[tx].error = "Esse campo precisa ser preenchido"
@@ -121,24 +133,51 @@ class SignUpStudentFragment : Fragment() {
                 }
             }
 
-            if (cancel) {
-                val choice = layoutInflater
-                        .inflate(R.layout.dialog_network_choice, null)
+            if (!cancel) {
 
-                val network = layoutInflater
-                        .inflate(R.layout.dialog_network, null)
+                val student = Student(
+                        txEemail.text.toString(),
+                        txPassword.text.toString(),
+                        txName.text.toString(),
+                        txDate.text.toString(),
+                        txStreet.text.toString(),
+                        txNumber.text.toString().toInt(),
+                        txNeigh.text.toString(),
+                        txCity.text.toString(),
+                        txPostalCode.text.toString(),
+                        state!!,
+                        txLattes.text.toString(),
+                        txRG.text.toString(),
+                        txCpf.text.toString(),
+                        txNacionalidade.text.toString(),
+                        txNaturalidade.text.toString()
+                )
 
-                /*choice.btNo.setOnClickListener {
-                    dialog?.dismiss()
-                }
+                Log.i("Student ---------------", student.toString())
 
-                choice.btYes.setOnClickListener {
-                    dialog?.dismiss()
+                Toast.makeText(activity, student.toString(), Toast.LENGTH_LONG)
+                        .show()
 
-                    showDialog(network)
-                }*/
+                // salvar no banco --------------
+                var studentID = 0
+                val server = Server()
 
-                showDialog(network)
+                server.service.insertStudent(student)
+                        .subscribeOn(Schedulers.io())
+                        .unsubscribeOn(Schedulers.computation())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({
+                            studentID = it.id
+                        }, {
+                            Toast.makeText(activity, "${it.message}", Toast.LENGTH_SHORT)
+                                    .show()
+                            Log.v("Error", it.message)
+                        }, {
+                            Toast.makeText(activity, "Foi $studentID", Toast.LENGTH_SHORT)
+                                    .show()
+
+
+                        })
             } else {
                 focusView?.requestFocus()
                 Toast.makeText(activity, "Preencha os obrigatorios", Toast.LENGTH_LONG)
@@ -148,6 +187,7 @@ class SignUpStudentFragment : Fragment() {
     }
 
     private fun showDialog(view: View) {
+        val builder = AlertDialog.Builder(activity)
         builder?.setView(view)
         dialog = builder?.create()
         dialog?.show()
