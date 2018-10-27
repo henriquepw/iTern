@@ -1,15 +1,15 @@
-data class Company (
-    val id: Int,
-    var email: String? = null,
-    var password: String? = null,
-    var fantasy_name: String? = null,
-    val cnpj: Int? = null,
-    val razao_social: String? = null,
-    var address_street: String? = null,
-    var address_number: String? = null,
-    var address_neighborhood: String? = null,
-    var address_city: String? = null,
-    var address_postal_code: String? = null,
-    var address_state: String? = null,
-    var address_country: String? = null
-    )
+package br.edu.ifpb.iternapp.entities
+
+data class Company(
+        val id: Int,
+        var email: String?,
+        var password: String?,
+        val cnpj: Int?,
+        val razao_social: String?,
+        var street: String?,
+        var number: String?,
+        var neighborhood: String?,
+        var city: String?,
+        var postal_code: String?,
+        var state: String?
+)
