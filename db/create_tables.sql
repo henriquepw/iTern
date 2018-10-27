@@ -10,7 +10,6 @@ CREATE TABLE  company (
     city VARCHAR(20) NOT NULL,
     postal_code VARCHAR(20) NOT NULL,
     state VARCHAR(20) NOT NULL,
-    country VARCHAR(20) NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -40,6 +39,7 @@ CREATE TABLE vacancy (
 	name VARCHAR(255) NOT NULL,
 	occupation_area VARCHAR(20) NOT NULL,
 	scholarship DOUBLE PRECISION NOT NULL,
+	workload INTEGER NOT NULL,
 	description VARCHAR(255) NOT NULL,
 	street VARCHAR(255) NOT NULL,
     number INTEGER NOT NULL,
@@ -68,6 +68,7 @@ CREATE TABLE student_course (
     name VARCHAR(255) NOT NULL,
     reference_period VARCHAR(6) NOT NULL,
     ingress_period VARCHAR(6) NOT NULL,
+    ingress_year VARCHAR(6) NOT NULL,
     ingress_way VARCHAR(10) NOT NULL,
     conclusion_year VARCHAR(6) NOT NULL,
     IRA DOUBLE PRECISION NOT NULL,
