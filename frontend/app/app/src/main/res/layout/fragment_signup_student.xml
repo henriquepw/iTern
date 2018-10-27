@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.SignUpCompanyFragment">
 
     <LinearLayout
@@ -46,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -76,11 +77,11 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="16dp">
 
-                    <AutoCompleteTextView
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/txEemail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/prompt_email"
+                        android:hint="email *"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
                         android:singleLine="true" />
@@ -92,47 +93,15 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="16dp">
 
-                    <EditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/txPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/prompt_password"
+                        android:hint="Senha *"
                         android:imeActionId="6"
                         android:imeActionLabel="@string/action_sign_in_short"
                         android:imeOptions="actionUnspecified"
                         android:inputType="textPassword"
-                        android:maxLines="1"
-                        android:singleLine="true" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="16dp">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/txCpf"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="CPF"
-                        android:inputType="textAutoComplete"
-                        android:maxLines="1"
-                        android:singleLine="true" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="16dp">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/txRG"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="RG"
-                        android:inputType="textAutoComplete"
                         android:maxLines="1"
                         android:singleLine="true" />
 
@@ -148,7 +117,143 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Endereço"
+                        android:text="Dados pessoas"
+                        android:textColor="@color/primary"
+                        android:textSize="20dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/primary_light" />
+
+                </LinearLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/txName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nome *"
+                        android:inputType="textAutoComplete"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/txDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Data de nascimento (DD/MM/AAAA) *"
+                        android:inputType="date"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/txCpf"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="CPF *"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/txRG"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="RG *"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/txNaturalidade"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Naturalidade *"
+                        android:inputType="textAutoComplete"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/txNacionalidade"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nacionalidade *"
+                        android:inputType="textAutoComplete"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/txPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Telefone *"
+                        android:inputType="phone"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Endereço *"
                         android:textColor="@color/primary"
                         android:textSize="20dp" />
 
@@ -173,11 +278,11 @@
                         android:layout_weight="1"
                         android:paddingBottom="16dp">
 
-                        <AutoCompleteTextView
+                        <android.support.design.widget.TextInputEditText
                             android:id="@+id/txStreet"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Rua"
+                            android:hint="Rua *"
                             android:inputType="textAutoComplete" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -189,12 +294,12 @@
                         android:paddingLeft="5dp"
                         android:paddingBottom="16dp">
 
-                        <AutoCompleteTextView
+                        <android.support.design.widget.TextInputEditText
                             android:id="@+id/txNumber"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Nº"
-                            android:inputType="text|number" />
+                            android:hint="Nº *"
+                            android:inputType="number" />
 
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
@@ -204,27 +309,37 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="16dp">
 
-                    <AutoCompleteTextView
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/txNeigh"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Bairro"
+                        android:hint="Bairro *"
                         android:inputType="textAutoComplete"
                         android:maxLines="1"
                         android:singleLine="true" />
 
                 </android.support.design.widget.TextInputLayout>
 
+                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                    android:id="@+id/spStates"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:hint="Estados *"
+                    android:padding="5dp"
+                    app:met_floatingLabel="highlight"
+                    app:met_primaryColor="@color/primary" />
+
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="16dp">
 
-                    <AutoCompleteTextView
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/txCity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Cidade"
+                        android:hint="Cidade *"
                         android:inputType="textAutoComplete"
                         android:maxLines="1"
                         android:singleLine="true" />
@@ -236,28 +351,12 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="16dp">
 
-                    <AutoCompleteTextView
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/txPostalCode"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="CEP"
-                        android:inputType="textAutoComplete"
-                        android:maxLines="1"
-                        android:singleLine="true" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="16dp">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/txState"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Estado"
-                        android:inputType="textAutoComplete"
+                        android:hint="CEP *"
+                        android:inputType="number"
                         android:maxLines="1"
                         android:singleLine="true" />
 
@@ -287,12 +386,28 @@
 
                 </LinearLayout>
 
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/txLattes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Curriculo Lattes"
+                        android:inputType="textAutoComplete"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </android.support.design.widget.TextInputLayout>
+
                 <Button
-                    android:id="@+id/btSignup"
+                    android:id="@+id/btNext"
                     style="Widget.AppCompat.Button.Colored"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cadastrar" />
+                    android:text="Next" />
 
             </LinearLayout>
         </ScrollView>

@@ -19,14 +19,12 @@ import android.util.Log
 import android.widget.Toast
 import br.edu.ifpb.iternapp.R
 import br.edu.ifpb.iternapp.conection.Server
-import br.edu.ifpb.iternapp.entities.Student
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlin.math.log
 
-class LoginActivity : AppCompatActivity(){
+class LoginActivity : AppCompatActivity() {
 
     private var mAuthTask: UserLoginTask? = null
 
@@ -133,18 +131,15 @@ class LoginActivity : AppCompatActivity(){
                     .unsubscribeOn(Schedulers.computation())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
-                        msg -> student = msg.id
-                    },
-                    {
-                        e ->
+                        student = it.id
+                    }, {
                         run {
-                            Toast.makeText(applicationContext, "Erro ${e.message}", Toast.LENGTH_SHORT).show()
-                            Log.v("Error", e.message)
+                            Toast.makeText(applicationContext, "Erro ${it.message}", Toast.LENGTH_SHORT).show()
+                            Log.v("Error", it.message)
                         }
-                    },
-                    {
+                    }, {
                         Toast.makeText(applicationContext, "Foi $student", Toast.LENGTH_SHORT).show()
-                        intent = Intent(this, MainActivity::class.java)
+                        intent = Intent(baseContext, MainActivity::class.java)
                         intent.putExtra("student", student)
                         startActivity(intent)
                         //finish()

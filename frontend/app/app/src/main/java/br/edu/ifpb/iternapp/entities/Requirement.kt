@@ -1,1 +1,0 @@
-data class Requirement(id: Int, requirement: String)

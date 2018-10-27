@@ -1,1 +1,1 @@
-data class Occupation_area(id: Int, occupation_area: String)
+data class Occupation_area(val id: Int, var occupation_area: String)
