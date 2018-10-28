@@ -1,7 +1,6 @@
 package br.edu.ifpb.iternapp.entities
 
 data class Course(
-        val id: Int,
         val student_id: Int,
         val institution: String,
         val name: String,

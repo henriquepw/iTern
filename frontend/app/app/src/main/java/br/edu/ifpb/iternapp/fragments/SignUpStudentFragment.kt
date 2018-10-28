@@ -3,7 +3,6 @@ package br.edu.ifpb.iternapp.fragments
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.support.design.widget.TextInputEditText
 import android.support.v4.app.Fragment
 import android.text.TextUtils
 import android.util.Log
@@ -15,13 +14,13 @@ import android.widget.AdapterView.OnItemClickListener
 
 import br.edu.ifpb.iternapp.R
 import br.edu.ifpb.iternapp.conection.Server
+import br.edu.ifpb.iternapp.entities.Phone
 import br.edu.ifpb.iternapp.entities.Student
 import com.github.rtoshiro.util.format.SimpleMaskFormatter
 import com.github.rtoshiro.util.format.text.MaskTextWatcher
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_signup_student.*
-import java.sql.Date
 
 
 class SignUpStudentFragment : Fragment() {
@@ -35,6 +34,8 @@ class SignUpStudentFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        var progress = activity!!.findViewById(R.id.progressBar) as ProgressBar
 
         setMask(txDate, "NN/NN/NNNN")
         setMask(txPhone, "(NN) NNNNN-NNNN")
@@ -65,17 +66,17 @@ class SignUpStudentFragment : Fragment() {
             var focusView: View? = null
 
             val textViews = arrayOf(
-                    txEemail, txPassword,
+                    /*txEemail, txPassword,
                     txName, txDate,
                     txCpf, txRG,
                     txNaturalidade, txNacionalidade,
                     txPhone, txStreet,
                     txNumber, txNeigh,
-                    txCity, txPostalCode/*,
+                    txCity, txPostalCode,*/
                     txCourseName, txCourseReferencePeriod,
                     txCourseIngressYear, txCourseIngressWay,
                     txCourseInstitution, txCourseIRA,
-                    txCourseShift, txCourseConclusionYear*/)
+                    txCourseShift, txCourseConclusionYear)
             textViews.reverse()
 
             spStates.error = null
@@ -83,7 +84,7 @@ class SignUpStudentFragment : Fragment() {
                 tx.error = null
 
 
-            if (state == null) {
+            /*if (state == null) {
                 spStates.error = "Esse campo precisa ser preenchido"
                 focusView = spStates
                 cancel = true
@@ -113,7 +114,7 @@ class SignUpStudentFragment : Fragment() {
                 cancel = true
             }
 
-            /*if (txCourseIngressYear.text.toString().length != 6) {
+            if (txCourseIngressYear.text.toString().length != 6) {
                 txCourseIngressYear.error = "Campo incompleto"
                 focusView = txCourseIngressYear
                 cancel = true
@@ -150,15 +151,10 @@ class SignUpStudentFragment : Fragment() {
                         txRG.text.toString(),
                         txCpf.text.toString(),
                         txNacionalidade.text.toString(),
-                        txNaturalidade.text.toString()
-                )
+                        txNaturalidade.text.toString())
 
                 Log.i("Student ---------------", student.toString())
 
-                Toast.makeText(activity, student.toString(), Toast.LENGTH_LONG)
-                        .show()
-
-                // salvar no banco --------------
                 var studentID = 0
                 val server = Server()
 
@@ -167,30 +163,38 @@ class SignUpStudentFragment : Fragment() {
                         .unsubscribeOn(Schedulers.computation())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({
+                            progress.visibility = ProgressBar.VISIBLE
                             studentID = it.id
                         }, {
                             Toast.makeText(activity, "${it.message}", Toast.LENGTH_SHORT)
                                     .show()
                             Log.v("Error", it.message)
                         }, {
+                            progress.visibility = ProgressBar.GONE
                             Toast.makeText(activity, "Foi $studentID", Toast.LENGTH_SHORT)
                                     .show()
 
+                            val phone = Phone(
+                                    studentID,
+                                    txPhone.text.toString())
 
+                            /*val course = Course(
+                                    studentID,
+                                    txCourseInstitution.text.toString(),
+                                    txCourseName.text.toString(),
+                                    txCourseReferencePeriod.text.toString(),
+                                    txCourseIngressYear.text.toString(),
+                                    txCourseIngressWay.text.toString(),
+                                    txCourseConclusionYear.text.toString(),
+                                    txCourseIRA.text.toString().toDouble(),
+                                    txCourseShift.text.toString())*/
                         })
             } else {
                 focusView?.requestFocus()
-                Toast.makeText(activity, "Preencha os obrigatorios", Toast.LENGTH_LONG)
+                Toast.makeText(activity, "Preencha os obrigatorios", Toast.LENGTH_SHORT)
                         .show()
             }
         }
-    }
-
-    private fun showDialog(view: View) {
-        val builder = AlertDialog.Builder(activity)
-        builder?.setView(view)
-        dialog = builder?.create()
-        dialog?.show()
     }
 
     private fun setMask(view: EditText, mask: String) {

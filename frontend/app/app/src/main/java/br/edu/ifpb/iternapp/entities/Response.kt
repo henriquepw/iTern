@@ -1,5 +1,5 @@
 package br.edu.ifpb.iternapp.entities
 
-data class SignIn(
+data class Response(
         var id: Int
 )

@@ -8,6 +8,9 @@ import br.edu.ifpb.iternapp.R
 import br.edu.ifpb.iternapp.fragments.SignUpCompanyFragment
 import br.edu.ifpb.iternapp.fragments.SignUpStudentFragment
 import kotlinx.android.synthetic.main.activity_signup.*
+import android.R.attr.fragment
+import android.widget.ProgressBar
+
 
 class SignupActivity : AppCompatActivity() {
 
@@ -24,9 +27,9 @@ class SignupActivity : AppCompatActivity() {
     }
 
     private fun startFragment(fragment: Fragment) {
-        val transaction = maneger.beginTransaction()
-
-        transaction.replace(R.id.fragContainer, fragment)
-        transaction.commit()
+        progressBar.visibility = ProgressBar.GONE
+        maneger.beginTransaction()
+                .replace(R.id.fragContainer, fragment)
+                .commit()
     }
 }
