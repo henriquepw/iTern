@@ -4,5 +4,6 @@
 
 #### Modelagens
 
+![Modelo Entidade Relacionamento](https://github.com/mrh3nry/ITern/blob/master/db/MER.png)
 
 ![Modelo Relacional](https://github.com/mrh3nry/ITern/blob/master/db/MR.png)
