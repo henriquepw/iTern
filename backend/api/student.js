@@ -54,5 +54,33 @@ module.exports = app => {
             .catch(err => res.status(500).send(err))  
     }
 
-    return { insert, update, remove, signin, get, getById }
+    const insertPhone = (req, res) => {
+        phone = { ...req.body }
+
+        app.db('student_telephone')
+            .insert(phone)
+            .returning('id')
+            .then(id => res.json({ id: id[0] }))
+            .catch(err => res.status(500).send(err))
+    }
+
+    const getAllPhone = (req, res) => {
+        /*app.db('student_telephone')
+            .select()
+            .where({ id: req.header['id'] })
+            .then(phones => res.json(phones))
+            .catch(err => res.status(500).send(err))*/
+    }
+
+    const insertCourse = (req, res) => {
+        course = { ...req.body }
+
+        app.db('student_course')
+            .insert(course)
+            .returning('id')
+            .then(id => res.json({ id: id[0] }))
+            .catch(err => res.status(500).send(err))
+    }
+
+    return { insert, update, remove, signin, get, getById, insertPhone, insertCourse }
 }

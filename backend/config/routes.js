@@ -11,6 +11,14 @@ module.exports = app => {
         .get(app.api.student.getById)
         .delete(app.api.student.remove)
 
+    app.route('/student/phone')
+        .post(app.api.student.insertPhone)
+        .get(app.api.student.getAllPhone)
+
+    app.route('/student/course')
+        .post(app.api.student.insertCourse)
+        //.get(app.api.student.getAllCourse)
+
     app.route('/company')
         .post(app.api.company.insert)
         .get(app.api.company.get)

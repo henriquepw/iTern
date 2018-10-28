@@ -2,12 +2,7 @@ package br.edu.ifpb.iternapp.conection
 
 import br.edu.ifpb.iternapp.entities.*
 import io.reactivex.Observable
-import retrofit2.http.Body
-
-import retrofit2.http.GET
-import retrofit2.http.POST
-
-import retrofit2.http.Header
+import retrofit2.http.*
 
 interface APIService {
 
@@ -24,6 +19,12 @@ interface APIService {
 
     @GET("student")
     fun getAllStudent(): Observable<List<Student>>
+
+    @PUT("student")
+    fun updateStudent(@Body student: Student): Observable<Response>
+
+    @DELETE("student")
+    fun deleteStudent(@Body student: Student)
 
     @GET("student/{id}")
     fun getByIdStudent(@Header("id") id: Int): Observable<List<Student>>
