@@ -14,6 +14,7 @@ import android.widget.AdapterView.OnItemClickListener
 
 import br.edu.ifpb.iternapp.R
 import br.edu.ifpb.iternapp.conection.Server
+import br.edu.ifpb.iternapp.entities.Course
 import br.edu.ifpb.iternapp.entities.Phone
 import br.edu.ifpb.iternapp.entities.Student
 import com.github.rtoshiro.util.format.SimpleMaskFormatter
@@ -156,9 +157,9 @@ class SignUpStudentFragment : Fragment() {
                 Log.i("Student ---------------", student.toString())
 
                 var studentID = 0
-                val server = Server()
+                val service = Server().service
 
-                server.service.insertStudent(student)
+                service.insertStudent(student)
                         .subscribeOn(Schedulers.io())
                         .unsubscribeOn(Schedulers.computation())
                         .observeOn(AndroidSchedulers.mainThread())
@@ -170,13 +171,26 @@ class SignUpStudentFragment : Fragment() {
                                     .show()
                             Log.v("Error", it.message)
                         }, {
-                            progress.visibility = ProgressBar.GONE
                             Toast.makeText(activity, "Foi $studentID", Toast.LENGTH_SHORT)
                                     .show()
 
                             val phone = Phone(
                                     studentID,
                                     txPhone.text.toString())
+
+                            service.insertStudentPhone(phone)
+                                    .subscribeOn(Schedulers.io())
+                                    .unsubscribeOn(Schedulers.computation())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe({}, {
+                                        Toast.makeText(activity, "${it.message}", Toast.LENGTH_SHORT)
+                                                .show()
+                                        Log.v("Error", it.message)
+                                    }, {
+                                        progress.visibility = ProgressBar.GONE
+                                        Toast.makeText(activity, "phone save", Toast.LENGTH_SHORT)
+                                                .show()
+                                    })
 
                             /*val course = Course(
                                     studentID,
@@ -187,7 +201,21 @@ class SignUpStudentFragment : Fragment() {
                                     txCourseIngressWay.text.toString(),
                                     txCourseConclusionYear.text.toString(),
                                     txCourseIRA.text.toString().toDouble(),
-                                    txCourseShift.text.toString())*/
+                                    txCourseShift.text.toString())
+
+                            service.insertStudentCourse(course)
+                                    .subscribeOn(Schedulers.io())
+                                    .unsubscribeOn(Schedulers.computation())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe({
+
+                                    }, {
+                                        Toast.makeText(activity, "${it.message}", Toast.LENGTH_SHORT)
+                                              .show()
+                                        Log.v("Error", it.message)
+                                    }, {
+
+                                    })*/
                         })
             } else {
                 focusView?.requestFocus()

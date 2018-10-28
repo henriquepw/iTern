@@ -8,9 +8,7 @@ import br.edu.ifpb.iternapp.R
 import br.edu.ifpb.iternapp.fragments.SignUpCompanyFragment
 import br.edu.ifpb.iternapp.fragments.SignUpStudentFragment
 import kotlinx.android.synthetic.main.activity_signup.*
-import android.R.attr.fragment
 import android.widget.ProgressBar
-
 
 class SignupActivity : AppCompatActivity() {
 
@@ -18,9 +16,12 @@ class SignupActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setContentView(R.layout.activity_signup)
         setSupportActionBar(toolSignup)
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
 
         btSignCompany.setOnClickListener { startFragment(SignUpCompanyFragment()) }
         btSignStudant.setOnClickListener { startFragment(SignUpStudentFragment()) }

@@ -13,7 +13,7 @@ module.exports = app => {
 
     app.route('/student/phone')
         .post(app.api.student.insertPhone)
-        .get(app.api.student.getAllPhone)
+        //.get(app.api.student.getAllPhone)
 
     app.route('/student/course')
         .post(app.api.student.insertCourse)
