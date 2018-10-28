@@ -21,6 +21,8 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
+    private var user: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -46,12 +48,12 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun userOnClick(user: String) {
+        this.user = user
         tvLogin.setText("Log in - $user")
     }
 
     @SuppressLint("CheckResult")
     private fun attemptLogin() {
-
         val emailStr = email.text.toString()
         val passwordStr = password.text.toString()
 
@@ -84,26 +86,52 @@ class LoginActivity : AppCompatActivity() {
             focusView?.requestFocus()
         } else {
             var server = Server()
-            var student = 0
+            var userId = 0
 
-            server.service.signinStudent(email.text.toString(), password.text.toString())
-                    .subscribeOn(Schedulers.io())
-                    .unsubscribeOn(Schedulers.computation())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({
-                        student = it.id
-                    }, {
-                        run {
-                            Toast.makeText(applicationContext, "Erro ${it.message}", Toast.LENGTH_SHORT).show()
-                            Log.v("Error", it.message)
-                        }
-                    }, {
-                        Toast.makeText(applicationContext, "Foi $student", Toast.LENGTH_SHORT).show()
-                        intent = Intent(baseContext, MainActivity::class.java)
-                        intent.putExtra("user", student)
-                        startActivity(intent)
-                        finish()
-                    })
+            when {
+                this.user == "" ->
+                    Toast.makeText(baseContext, "Empresa ou estudane?", Toast.LENGTH_SHORT)
+                            .show()
+                this.user == "Estudante" ->
+                    server.service.signinStudent(email.text.toString(), password.text.toString())
+                            .subscribeOn(Schedulers.io())
+                            .unsubscribeOn(Schedulers.computation())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe({
+                                userId = it.id
+                            }, {
+                                Toast.makeText(applicationContext, "Erro ${it.message}", Toast.LENGTH_SHORT)
+                                        .show()
+                                Log.v("Error", it.message)
+                            }, {
+                                Toast.makeText(applicationContext, "Foi $userId", Toast.LENGTH_SHORT)
+                                        .show()
+                                intent = Intent(baseContext, MainActivity::class.java)
+                                intent.putExtra("user", this.user)
+                                startActivity(intent)
+                                finish()
+                            })
+                else -> {
+                    server.service.signinCompany(email.text.toString(), password.text.toString())
+                            .subscribeOn(Schedulers.io())
+                            .unsubscribeOn(Schedulers.computation())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe({
+                                userId = it.id
+                            }, {
+                                Toast.makeText(applicationContext, "Erro ${it.message}", Toast.LENGTH_SHORT)
+                                        .show()
+                                Log.v("Error", it.message)
+                            }, {
+                                Toast.makeText(applicationContext, "Foi $userId", Toast.LENGTH_SHORT)
+                                        .show()
+                                intent = Intent(baseContext, MainActivity::class.java)
+                                intent.putExtra("user", this.user)
+                                startActivity(intent)
+                                finish()
+                            })
+                }
+            }
         }
     }
 

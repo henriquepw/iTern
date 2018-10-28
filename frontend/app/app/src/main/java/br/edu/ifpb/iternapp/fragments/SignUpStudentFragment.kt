@@ -2,6 +2,7 @@ package br.edu.ifpb.iternapp.fragments
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.text.TextUtils
@@ -13,6 +14,7 @@ import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
 
 import br.edu.ifpb.iternapp.R
+import br.edu.ifpb.iternapp.activities.LoginActivity
 import br.edu.ifpb.iternapp.conection.Server
 import br.edu.ifpb.iternapp.entities.Course
 import br.edu.ifpb.iternapp.entities.Phone
@@ -182,14 +184,17 @@ class SignUpStudentFragment : Fragment() {
                                     .subscribeOn(Schedulers.io())
                                     .unsubscribeOn(Schedulers.computation())
                                     .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe({}, {
-                                        Toast.makeText(activity, "${it.message}", Toast.LENGTH_SHORT)
+                                    .subscribe({}, { e ->
+                                        Toast.makeText(activity, "${e.message}", Toast.LENGTH_SHORT)
                                                 .show()
-                                        Log.v("Error", it.message)
+                                        Log.v("Error", e.message)
                                     }, {
                                         progress.visibility = ProgressBar.GONE
                                         Toast.makeText(activity, "phone save", Toast.LENGTH_SHORT)
                                                 .show()
+
+                                        startActivity(Intent(activity, LoginActivity::class.java))
+                                        activity!!.finish()
                                     })
 
                             /*val course = Course(

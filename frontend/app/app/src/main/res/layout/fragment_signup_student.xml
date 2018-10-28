@@ -253,7 +253,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Endereço *"
+                        android:text="Endereço"
                         android:textColor="@color/primary"
                         android:textSize="20dp" />
 
@@ -324,7 +324,7 @@
                     android:id="@+id/spStates"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginBottom="11dp"
                     android:hint="Estados *"
                     android:padding="5dp"
                     app:met_floatingLabel="highlight"

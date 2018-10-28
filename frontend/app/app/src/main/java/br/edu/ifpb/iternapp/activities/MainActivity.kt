@@ -1,11 +1,13 @@
 package br.edu.ifpb.iternapp.activities
 
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.view.Menu
+import android.view.MenuItem
 import br.edu.ifpb.iternapp.R
 import br.edu.ifpb.iternapp.fragments.HomeFragment
 import br.edu.ifpb.iternapp.fragments.SearchFragment
@@ -57,6 +59,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
         menuInflater.inflate(R.menu.main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        super.onOptionsItemSelected(item)
+
+        if (item?.itemId == R.id.exit) {
+            startActivity(Intent(baseContext, LoginActivity::class.java))
+            finish()
+        }
+
         return true
     }
 }

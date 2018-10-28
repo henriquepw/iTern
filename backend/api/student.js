@@ -57,6 +57,8 @@ module.exports = app => {
     const insertPhone = (req, res) => {
         phone = { ...req.body }
 
+        console.log({ ...phone })
+
         app.db('student_telephone')
             .insert(phone)
             .returning('id')
@@ -82,5 +84,11 @@ module.exports = app => {
             .catch(err => res.status(500).send(err))
     }
 
-    return { insert, update, remove, signin, get, getById, insertPhone, insertCourse }
+    return { 
+        insert, insertPhone, insertCourse,
+        update, 
+        remove, 
+        signin, 
+        get, getById, getAllPhone
+    }
 }
