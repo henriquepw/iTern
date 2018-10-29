@@ -11,6 +11,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.util.Log
+import android.widget.ProgressBar
 import android.widget.Toast
 import br.edu.ifpb.iternapp.R
 import br.edu.ifpb.iternapp.conection.Server
@@ -92,43 +93,43 @@ class LoginActivity : AppCompatActivity() {
                 this.user == "" ->
                     Toast.makeText(baseContext, "Empresa ou estudane?", Toast.LENGTH_SHORT)
                             .show()
-                this.user == "Estudante" ->
+                this.user == "Estudante" -> {
+                    startRequest()
+                    progressBarLogin.visibility = ProgressBar.VISIBLE
                     server.service.signinStudent(email.text.toString(), password.text.toString())
                             .subscribeOn(Schedulers.io())
                             .unsubscribeOn(Schedulers.computation())
                             .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe({
-                                userId = it.id
+                            .subscribe({ res ->
+                                userId = res.id
+                            }, { e ->
+                                err(e)
                             }, {
-                                Toast.makeText(applicationContext, "Erro ${it.message}", Toast.LENGTH_SHORT)
+                                Toast.makeText(baseContext, "Foi $userId", Toast.LENGTH_SHORT)
                                         .show()
-                                Log.v("Error", it.message)
-                            }, {
-                                Toast.makeText(applicationContext, "Foi $userId", Toast.LENGTH_SHORT)
-                                        .show()
+
                                 intent = Intent(baseContext, MainActivity::class.java)
-                                intent.putExtra("user", this.user)
+                                // ----------------------------------
+
                                 startActivity(intent)
                                 finish()
                             })
+                }
                 else -> {
+                    startRequest()
                     server.service.signinCompany(email.text.toString(), password.text.toString())
                             .subscribeOn(Schedulers.io())
                             .unsubscribeOn(Schedulers.computation())
                             .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe({
-                                userId = it.id
+                            .subscribe({ res ->
+                                userId = res.id
+                            }, { e ->
+                                err(e)
                             }, {
-                                Toast.makeText(applicationContext, "Erro ${it.message}", Toast.LENGTH_SHORT)
+                                Toast.makeText(baseContext, "Foi $userId", Toast.LENGTH_SHORT)
                                         .show()
-                                Log.v("Error", it.message)
-                            }, {
-                                Toast.makeText(applicationContext, "Foi $userId", Toast.LENGTH_SHORT)
-                                        .show()
-                                intent = Intent(baseContext, MainActivity::class.java)
-                                intent.putExtra("user", this.user)
-                                startActivity(intent)
-                                finish()
+
+                                finishRequest()
                             })
                 }
             }
@@ -143,4 +144,33 @@ class LoginActivity : AppCompatActivity() {
         return password.length >= 4
     }
 
+    private fun err(e: Throwable) {
+        email.isEnabled = true
+        password.isEnabled = true
+        email_sign_in_button.isEnabled = true
+        btSignup.isEnabled = true
+
+        progressBarLogin.visibility = ProgressBar.GONE
+
+        Toast.makeText(applicationContext, "${e.message}", Toast.LENGTH_SHORT)
+                .show()
+        Log.v("Error", e.message)
+    }
+
+    private fun startRequest() {
+        progressBarLogin.visibility = ProgressBar.VISIBLE
+
+        email_sign_in_button.isEnabled = false
+        btSignup.isEnabled = false
+        email.isEnabled = false
+        password.isEnabled = false
+    }
+
+    private fun finishRequest() {
+        intent = Intent(baseContext, MainActivity::class.java)
+        // ----------------------------------
+
+        startActivity(intent)
+        finish()
+    }
 }

@@ -77,6 +77,8 @@ module.exports = app => {
     const insertCourse = (req, res) => {
         course = { ...req.body }
 
+        console.log({ ...course })
+
         app.db('student_course')
             .insert(course)
             .returning('id')

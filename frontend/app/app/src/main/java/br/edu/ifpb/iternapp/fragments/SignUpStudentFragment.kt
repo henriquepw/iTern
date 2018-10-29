@@ -57,11 +57,12 @@ class SignUpStudentFragment : Fragment() {
 
         var state: String? = null
 
-        spStates.setAdapter(ArrayAdapter<String>(activity, android.R.layout.simple_spinner_dropdown_item, states))
+        val adp = ArrayAdapter<String>(activity, android.R.layout.simple_spinner_dropdown_item, states)
+        spStates.setAdapter(adp)
 
-        spStates.onItemClickListener = OnItemClickListener { parent, view, position, id ->
+        spStates.onItemClickListener = OnItemClickListener { _, _, position, _ ->
             state = states[position]
-            Toast.makeText(activity, "${states[position]}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, states[position], Toast.LENGTH_SHORT).show()
         }
 
         btNext.setOnClickListener {
@@ -69,23 +70,22 @@ class SignUpStudentFragment : Fragment() {
             var focusView: View? = null
 
             val textViews = arrayOf(
-                    /*txEemail, txPassword,
+                    txEemail, txPassword,
                     txName, txDate,
                     txCpf, txRG,
                     txNaturalidade, txNacionalidade,
                     txPhone, txStreet,
                     txNumber, txNeigh,
-                    txCity, txPostalCode,*/
+                    txCity, txPostalCode/*,
                     txCourseName, txCourseReferencePeriod,
                     txCourseIngressYear, txCourseIngressWay,
                     txCourseInstitution, txCourseIRA,
-                    txCourseShift, txCourseConclusionYear)
+                    txCourseShift, txCourseConclusionYear*/)
             textViews.reverse()
 
             spStates.error = null
             for (tx in textViews)
                 tx.error = null
-
 
             /*if (state == null) {
                 spStates.error = "Esse campo precisa ser preenchido"
@@ -169,6 +169,7 @@ class SignUpStudentFragment : Fragment() {
                             progress.visibility = ProgressBar.VISIBLE
                             studentID = it.id
                         }, {
+                            progress.visibility = ProgressBar.GONE
                             Toast.makeText(activity, "${it.message}", Toast.LENGTH_SHORT)
                                     .show()
                             Log.v("Error", it.message)
@@ -176,7 +177,7 @@ class SignUpStudentFragment : Fragment() {
                             Toast.makeText(activity, "Foi $studentID", Toast.LENGTH_SHORT)
                                     .show()
 
-                            val phone = Phone(
+                            /*val phone = Phone(
                                     studentID,
                                     txPhone.text.toString())
 
@@ -185,6 +186,7 @@ class SignUpStudentFragment : Fragment() {
                                     .unsubscribeOn(Schedulers.computation())
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribe({}, { e ->
+                                        progress.visibility = ProgressBar.GONE
                                         Toast.makeText(activity, "${e.message}", Toast.LENGTH_SHORT)
                                                 .show()
                                         Log.v("Error", e.message)
@@ -197,7 +199,7 @@ class SignUpStudentFragment : Fragment() {
                                         activity!!.finish()
                                     })
 
-                            /*val course = Course(
+                            val course = Course(
                                     studentID,
                                     txCourseInstitution.text.toString(),
                                     txCourseName.text.toString(),
