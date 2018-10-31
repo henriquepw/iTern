@@ -2,7 +2,6 @@ CREATE TABLE  company (
     id SERIAL,
     email VARCHAR(65) UNIQUE NOT NULL,
     password VARCHAR(30) NOT NULL,
-    name VARCHAR(20) NOT NULL,
     cnpj VARCHAR(15) NOT NULL,
     razao_social VARCHAR(255),
     street VARCHAR(255) NOT NULL,
