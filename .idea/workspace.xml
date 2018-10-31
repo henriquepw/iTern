@@ -8,7 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5e8616b5-7fb8-4b55-b59c-77b4633c5282" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/create_tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/db/create_tables.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/insert.sql" beforeDir="false" afterPath="$PROJECT_DIR$/db/insert.sql" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,20 +37,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="create_tables.sql" pinned="false" current-in-tab="true">
+      <file leaf-file-name="create_tables.sql" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/create_tables.sql">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
-              <caret line="39" column="15" lean-forward="true" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="15" />
+              <caret line="33" column="2" lean-forward="true" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="2" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="insert.sql" pinned="false" current-in-tab="false">
+      <file leaf-file-name="insert.sql" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db/insert.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="43" column="15" selection-start-line="43" selection-start-column="15" selection-end-line="43" selection-end-column="15" />
+            <state relative-caret-position="1165">
+              <caret line="83" lean-forward="true" selection-start-line="83" selection-end-line="83" />
             </state>
           </provider>
         </entry>
@@ -96,8 +95,8 @@
         <option value="$PROJECT_DIR$/frontend/app/app/src/main/java/br/edu/ifpb/iternapp/entities/Company.kt" />
         <option value="$PROJECT_DIR$/frontend/app/app/src/main/java/br/edu/ifpb/iternapp/entities/Student.kt" />
         <option value="$PROJECT_DIR$/frontend/app/app/src/main/java/br/edu/ifpb/iternapp/entities/Vacancy.kt" />
-        <option value="$PROJECT_DIR$/db/insert.sql" />
         <option value="$PROJECT_DIR$/db/create_tables.sql" />
+        <option value="$PROJECT_DIR$/db/insert.sql" />
       </list>
     </option>
   </component>
@@ -354,11 +353,18 @@
       <option name="project" value="LOCAL" />
       <updated>1541016040021</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="update insert.sql file">
+      <created>1541017921673</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1541017921673</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="31" width="2560" height="1049" extended-state="7" />
+    <frame x="0" y="31" width="2560" height="1049" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -424,7 +430,8 @@
     <MESSAGE value="insert into tables .sql" />
     <MESSAGE value="remove instituion reference in student_course table" />
     <MESSAGE value="remove name from company table" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove name from company table" />
+    <MESSAGE value="update insert.sql file" />
+    <option name="LAST_COMMIT_MESSAGE" value="update insert.sql file" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/frontend/app/app/src/main/java/br/edu/ifpb/iternapp/entities/Company.kt">
@@ -599,17 +606,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/insert.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="43" column="15" selection-start-line="43" selection-start-column="15" selection-end-line="43" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/create_tables.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="39" column="15" lean-forward="true" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="15" />
+          <caret line="33" column="2" lean-forward="true" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/insert.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1165">
+          <caret line="83" lean-forward="true" selection-start-line="83" selection-end-line="83" />
         </state>
       </provider>
     </entry>
