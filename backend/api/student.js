@@ -2,9 +2,15 @@ module.exports = app => {
     const insert = (req, res) => {
         const student = { ...req.body }
         
+        console.log({ ...student })
+
         app.db('student')
             .insert(student)
-            .then(_ => res.status(204).send())
+            .returning('id')
+            .then(id => {
+                res.json({ id: id[0] })
+                console.log(id[0])
+            })
             .catch(err => res.status(500).send(err))
     }
 
@@ -48,5 +54,43 @@ module.exports = app => {
             .catch(err => res.status(500).send(err))  
     }
 
-    return { insert, update, remove, signin, get, getById }
+    const insertPhone = (req, res) => {
+        phone = { ...req.body }
+
+        console.log({ ...phone })
+
+        app.db('student_telephone')
+            .insert(phone)
+            .returning('id')
+            .then(id => res.json({ id: id[0] }))
+            .catch(err => res.status(500).send(err))
+    }
+
+    const getAllPhone = (req, res) => {
+        /*app.db('student_telephone')
+            .select()
+            .where({ id: req.header['id'] })
+            .then(phones => res.json(phones))
+            .catch(err => res.status(500).send(err))*/
+    }
+
+    const insertCourse = (req, res) => {
+        course = { ...req.body }
+
+        console.log({ ...course })
+
+        app.db('student_course')
+            .insert(course)
+            .returning('id')
+            .then(id => res.json({ id: id[0] }))
+            .catch(err => res.status(500).send(err))
+    }
+
+    return { 
+        insert, insertPhone, insertCourse,
+        update, 
+        remove, 
+        signin, 
+        get, getById, getAllPhone
+    }
 }

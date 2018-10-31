@@ -1,5 +1,6 @@
 package br.edu.ifpb.iternapp.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -17,7 +18,9 @@ class HomeFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
-    fun setTitule(user: String) {
-        tvUser.text = "Bem vindo ${user}"
+    @SuppressLint("SetTextI18n")
+    fun setTitule(user: String?) {
+        if (user != null)
+            tvUser.text = "Bem vindo $user"
     }
 }

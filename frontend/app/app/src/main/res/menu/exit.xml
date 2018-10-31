@@ -1,9 +1,0 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/exit"
-        android:icon="@drawable/ic_exit"
-        android:title="Log off"
-        app:showAsAction="always" />
-
-</menu>

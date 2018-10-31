@@ -30,7 +30,7 @@
         </activity>
 
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".activities.MainStudentActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <category android:name="android.intent.category.HOME" />
@@ -43,7 +43,8 @@
 
         <activity
             android:name=".activities.SignupActivity"
-            android:label="iTern - Sign Up" />
+            android:label="Sign Up"
+            android:parentActivityName=".activities.LoginActivity" />
     </application>
 
 </manifest>

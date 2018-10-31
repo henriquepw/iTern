@@ -253,7 +253,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Endereço *"
+                        android:text="Endereço"
                         android:textColor="@color/primary"
                         android:textSize="20dp" />
 
@@ -291,7 +291,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:paddingLeft="5dp"
+                        android:paddingStart="5dp"
                         android:paddingBottom="16dp">
 
                         <android.support.design.widget.TextInputEditText
@@ -324,7 +324,7 @@
                     android:id="@+id/spStates"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginBottom="11dp"
                     android:hint="Estados *"
                     android:padding="5dp"
                     app:met_floatingLabel="highlight"
@@ -386,6 +386,102 @@
 
                 </LinearLayout>
 
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/txCourseName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Curso *"
+                    android:inputType="textAutoComplete"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/txCourseReferencePeriod"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Periodo de referência *"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/txCourseIngressYear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ano de ingresção (Ano.Periodo) *"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/txCourseIngressWay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Meio de ingressão *"
+                    android:inputType="textAutoComplete"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/txCourseInstitution"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Instituição"
+                    android:inputType="textAutoComplete"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/txCourseIRA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="I.R.A *"
+                    android:inputType="numberDecimal"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/txCourseShift"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Turno *"
+                    android:inputType="textAutoComplete"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/txCourseConclusionYear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ano de conclusão previsto *"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Networks"
+                        android:textColor="@color/primary"
+                        android:textSize="20dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/primary_light" />
+
+                </LinearLayout>
+
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -402,12 +498,44 @@
 
                 </android.support.design.widget.TextInputLayout>
 
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/txLinkedin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Linkedin"
+                        android:inputType="textAutoComplete"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/txGithub"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Github"
+                        android:inputType="textAutoComplete"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </android.support.design.widget.TextInputLayout>
+
                 <Button
                     android:id="@+id/btNext"
                     style="Widget.AppCompat.Button.Colored"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Next" />
+                    android:text="Cadastrar" />
 
             </LinearLayout>
         </ScrollView>
