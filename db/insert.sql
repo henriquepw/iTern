@@ -12,6 +12,20 @@ VALUES
     ('henrique@email.com', '2222', 'Henrique Martins', '17/01/2000', 'Unica Rua de Montadas', 229, 'Centro', 'Montadas', '58135000', 'Paraiba', 'url_lattes.com/curriculo_henrique', '000.000.000-01', '0.000.001', 'Esperança', 'brasileiro'),
     ('danillo@email.com', '2222', 'Danillo Cavalcante', '05/05/1996', 'Rua Riachuelo', 229, 'Centro', 'Campina Grande', '58135000', 'Paraiba', 'url_lattes.com/curriculo_danillo', '000.000.000-02', '0.000.002', 'Campina Grande', 'brasileiro');
 
+INSERT INTO requirement
+    (requirement)
+VALUES
+    ('CCNA'),
+    ('CNH tipo B'),
+    ('estar cursando na area de TI');
+
+INSERT INTO occupation_area
+    (occupation_area)
+VALUES
+    ('Redes de computadores'),
+    ('Telecomunicações'),
+    ('Assistencia tecnica');
+
 INSERT INTO vacancy
     (company_id, name, scholarship, workload, description, street, number, neighborhood, city, postal_code, state)
 VALUES
@@ -39,20 +53,6 @@ VALUES
     (16, 'Instagram', 'www.instagram.com/felipef.bs/'),
     (17, 'Instagram', 'www.instagram.com/h3nry.ns/'),
     (18, 'Instagram', 'www.instagram.com/danillocavalcante/');
-
-INSERT INTO requirement
-    (requirement)
-VALUES
-    ('CCNA'),
-    ('CNH tipo B'),
-    ('estar cursando na area de TI');
-
-INSERT INTO occupation_area
-    (occupation_area)
-VALUES
-    ('Redes de computadores'),
-    ('Telecomunicações'),
-    ('Assistencia tecnica');
 
 INSERT INTO vacancy_requirement
     (vacancy_id, requirement_id)
