@@ -66,8 +66,6 @@ CREATE TABLE student_course (
     PRIMARY KEY (id),
     FOREIGN KEY (student_id)
         REFERENCES student(id),
-    FOREIGN KEY (institution_id)
-        REFERENCES institution(id)
 );	
 
 CREATE TABLE student_telephone (
