@@ -8,7 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5e8616b5-7fb8-4b55-b59c-77b4633c5282" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/insert.sql" beforeDir="false" afterPath="$PROJECT_DIR$/db/insert.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/create_tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/db/create_tables.sql" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,20 +37,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="create_tables.sql" pinned="false" current-in-tab="false">
+      <file leaf-file-name="create_tables.sql" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db/create_tables.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="33" column="2" lean-forward="true" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="2" />
+            <state relative-caret-position="420">
+              <caret line="82" column="37" lean-forward="true" selection-start-line="82" selection-start-column="37" selection-end-line="82" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="insert.sql" pinned="false" current-in-tab="true">
+      <file leaf-file-name="insert.sql" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/insert.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1165">
-              <caret line="83" lean-forward="true" selection-start-line="83" selection-end-line="83" />
+            <state relative-caret-position="315">
+              <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -95,16 +95,15 @@
         <option value="$PROJECT_DIR$/frontend/app/app/src/main/java/br/edu/ifpb/iternapp/entities/Company.kt" />
         <option value="$PROJECT_DIR$/frontend/app/app/src/main/java/br/edu/ifpb/iternapp/entities/Student.kt" />
         <option value="$PROJECT_DIR$/frontend/app/app/src/main/java/br/edu/ifpb/iternapp/entities/Vacancy.kt" />
-        <option value="$PROJECT_DIR$/db/create_tables.sql" />
         <option value="$PROJECT_DIR$/db/insert.sql" />
+        <option value="$PROJECT_DIR$/db/create_tables.sql" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="590" />
-    <option name="y" value="32" />
-    <option name="width" value="1270" />
-    <option name="height" value="786" />
+  <component name="ProjectFrameBounds" extendedState="4">
+    <option name="y" value="31" />
+    <option name="width" value="1280" />
+    <option name="height" value="1049" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -360,27 +359,41 @@
       <option name="project" value="LOCAL" />
       <updated>1541017921673</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="update insert.sql file">
+      <created>1541019082999</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1541019082999</updated>
+    </task>
+    <task id="LOCAL-00008" summary="update insert.sql file">
+      <created>1541019555347</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1541019555347</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="31" width="2560" height="1049" extended-state="6" />
+    <frame x="0" y="31" width="1280" height="1049" extended-state="4" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info id="DB Browser" />
-      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.49822766" visible="true" weight="0.32894737" />
+      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.4980143" visible="true" weight="0.32894737" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="bottom" id="DB Execution Console" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50177234" side_tool="true" visible="true" weight="0.32894737" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5019857" side_tool="true" visible="true" weight="0.32894737" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49960285" weight="0.32930845" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18708153" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.37728357" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
@@ -606,17 +619,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/create_tables.sql">
+    <entry file="file://$PROJECT_DIR$/db/insert.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="33" column="2" lean-forward="true" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="2" />
+        <state relative-caret-position="315">
+          <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/insert.sql">
+    <entry file="file://$PROJECT_DIR$/db/create_tables.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1165">
-          <caret line="83" lean-forward="true" selection-start-line="83" selection-end-line="83" />
+        <state relative-caret-position="420">
+          <caret line="82" column="37" lean-forward="true" selection-start-line="82" selection-start-column="37" selection-end-line="82" selection-end-column="37" />
         </state>
       </provider>
     </entry>
