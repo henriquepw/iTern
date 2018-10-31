@@ -37,7 +37,6 @@ CREATE TABLE vacancy (
 	id SERIAL,
 	company_id INTEGER,
 	name VARCHAR(255) NOT NULL,
-	occupation_area VARCHAR(20) NOT NULL,
 	scholarship DOUBLE PRECISION NOT NULL,
 	workload INTEGER NOT NULL,
 	description VARCHAR(255) NOT NULL,
@@ -49,7 +48,7 @@ CREATE TABLE vacancy (
     state VARCHAR(20) NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (company_id)
-        REFERENCES company (id)
+        REFERENCES company (id),
 );
 
 CREATE TABLE student_course (
