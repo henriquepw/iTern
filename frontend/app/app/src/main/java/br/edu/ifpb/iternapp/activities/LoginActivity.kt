@@ -108,9 +108,7 @@ class LoginActivity : AppCompatActivity() {
                                 Toast.makeText(baseContext, "Foi $userId", Toast.LENGTH_SHORT)
                                         .show()
 
-                                intent = Intent(baseContext, MainActivity::class.java)
-                                // ----------------------------------
-
+                                intent = Intent(baseContext, MainStudentActivity::class.java)
                                 startActivity(intent)
                                 finish()
                             })
@@ -121,16 +119,15 @@ class LoginActivity : AppCompatActivity() {
                             .subscribeOn(Schedulers.io())
                             .unsubscribeOn(Schedulers.computation())
                             .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe({ res ->
-                                userId = res.id
-                            }, { e ->
-                                err(e)
-                            }, {
+                            .subscribe({
+                                userId = it.id
                                 Toast.makeText(baseContext, "Foi $userId", Toast.LENGTH_SHORT)
                                         .show()
 
-                                finishRequest()
-                            })
+                                intent = Intent(baseContext, MainCompanyActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            }, { e -> err(e) })
                 }
             }
         }
@@ -167,8 +164,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun finishRequest() {
-        intent = Intent(baseContext, MainActivity::class.java)
-        // ----------------------------------
+        intent = Intent(baseContext, MainStudentActivity::class.java)
 
         startActivity(intent)
         finish()

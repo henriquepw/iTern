@@ -12,13 +12,8 @@ import android.widget.*
 
 import br.edu.ifpb.iternapp.R
 import br.edu.ifpb.iternapp.activities.LoginActivity
-import br.edu.ifpb.iternapp.activities.MainActivity
 import br.edu.ifpb.iternapp.conection.Server
 import br.edu.ifpb.iternapp.entities.Company
-import br.edu.ifpb.iternapp.entities.Phone
-import br.edu.ifpb.iternapp.entities.Student
-import com.github.rtoshiro.util.format.SimpleMaskFormatter
-import com.github.rtoshiro.util.format.text.MaskTextWatcher
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_signup_company.*
@@ -136,10 +131,4 @@ class SignUpCompanyFragment : Fragment() {
             }
         }
     }
-
-    private fun setMask(view: EditText, mask: String) {
-        val mtw = MaskTextWatcher(view, SimpleMaskFormatter(mask))
-        view.addTextChangedListener(mtw)
-    }
-
 }
