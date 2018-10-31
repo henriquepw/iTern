@@ -6,7 +6,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60sp">
 
         <TextView
             android:id="@+id/tx"
@@ -41,7 +42,7 @@
                 android:padding="43sp">
 
                 <Button
-                    android:id="@+id/btEditCompany"
+                    android:id="@+id/btEditStudent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Editar dados" />
@@ -55,7 +56,7 @@
                     android:background="@color/accent" />
 
                 <Button
-                    android:id="@+id/btaddCourse"
+                    android:id="@+id/btAddCourse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Adicionar Curso" />
@@ -69,7 +70,7 @@
                     android:background="@color/accent" />
 
                 <Button
-                    android:id="@+id/btaddNetwork"
+                    android:id="@+id/btAddNetwork"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Adicionar Rede Social" />
@@ -83,7 +84,7 @@
                     android:background="@color/accent" />
 
                 <Button
-                    android:id="@+id/btDeleteCompany"
+                    android:id="@+id/btDeleteStudent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Excluir conta" />

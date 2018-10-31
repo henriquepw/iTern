@@ -6,10 +6,9 @@
     <item
         android:id="@+id/navSearch"
         android:icon="@drawable/ic_search"
-        android:title="Search" />
+        android:title="Pesquisar" />
     <item
         android:id="@+id/navSettings"
         android:icon="@drawable/ic_settings"
-        android:title="Settings" />
-
+        android:title="Configurações" />
 </menu>

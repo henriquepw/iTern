@@ -16,8 +16,8 @@ class SignupActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setContentView(R.layout.activity_signup)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setSupportActionBar(toolSignup)
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)

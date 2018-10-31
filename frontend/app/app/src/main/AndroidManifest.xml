@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="br.edu.ifpb.iternapp">
 
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -38,6 +37,14 @@
         </activity>
 
         <activity
+            android:name=".activities.MainCompanyActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".activities.LoginActivity"
             android:label="@string/title_activity_login" />
 
@@ -45,6 +52,26 @@
             android:name=".activities.SignupActivity"
             android:label="Sign Up"
             android:parentActivityName=".activities.LoginActivity" />
+
+        <activity
+            android:name=".activities.add.AddVacancyActivity"
+            android:label="Adicionar vaga"
+            android:parentActivityName=".activities.MainCompanyActivity" />
+
+        <activity
+            android:name=".activities.edit.EditCompanyActivity"
+            android:label="Editar dados"
+            android:parentActivityName=".activities.MainCompanyActivity" />
+
+        <activity
+            android:name=".activities.edit.EditStudentActivity"
+            android:label="Editar dados"
+            android:parentActivityName=".activities.MainStudentActivity" />
+
+        <activity
+            android:name=".activities.add.AddCourseActivity"
+            android:label="Adicionar curso"
+            android:parentActivityName=".activities.MainStudentActivity" />
     </application>
 
 </manifest>
