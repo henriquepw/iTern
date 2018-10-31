@@ -1,5 +1,7 @@
 package br.edu.ifpb.iternapp.fragments
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -10,9 +12,12 @@ import android.view.ViewGroup
 import br.edu.ifpb.iternapp.R
 import br.edu.ifpb.iternapp.activities.add.AddVacancyActivity
 import br.edu.ifpb.iternapp.activities.edit.EditCompanyActivity
+import kotlinx.android.synthetic.main.dialog_choice.view.*
 import kotlinx.android.synthetic.main.fragment_settings_company.*
 
 class SettingsFragmentCompany : Fragment() {
+
+    var dialog: Dialog? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -23,7 +28,19 @@ class SettingsFragmentCompany : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         btDeleteCompany.setOnClickListener {
+            val view = layoutInflater.inflate(R.layout.dialog_choice, null)
 
+            view.btNo.setOnClickListener {
+                dialog?.dismiss()
+            }
+
+            view.btYes.setOnClickListener {
+                // Deletar company
+
+                dialog?.dismiss()
+            }
+
+            showDialog(view)
         }
 
         btAddVacancy.setOnClickListener {
@@ -33,5 +50,12 @@ class SettingsFragmentCompany : Fragment() {
         btEditCompany.setOnClickListener {
             startActivity(Intent(activity, EditCompanyActivity::class.java))
         }
+    }
+
+    private fun showDialog(view: View) {
+        val builder = AlertDialog.Builder(activity)
+        builder.setView(view)
+        dialog = builder.create()
+        dialog?.show()
     }
 }
