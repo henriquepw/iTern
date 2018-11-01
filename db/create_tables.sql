@@ -1,4 +1,4 @@
-CREATE TABLE  company (
+CREATE TABLE company(
     id SERIAL,
     email VARCHAR(65) UNIQUE NOT NULL,
     password VARCHAR(30) NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE  company (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE student (
+CREATE TABLE student(
     id SERIAL,
     email VARCHAR(65) UNIQUE NOT NULL,
     password VARCHAR(30) NOT NULL,
@@ -30,17 +30,17 @@ CREATE TABLE student (
     rg VARCHAR(10) UNIQUE NOT NULL,
     birth_place VARCHAR(20) NOT NULL,
     citizenship VARCHAR(20) NOT NULL,
-	PRIMARY KEY (id)
+    PRIMARY KEY (id)
 );
 
-CREATE TABLE vacancy (
-	id SERIAL,
-	company_id INTEGER,
-	name VARCHAR(255) NOT NULL,
-	scholarship DOUBLE PRECISION NOT NULL,
-	workload INTEGER NOT NULL,
-	description VARCHAR(255) NOT NULL,
-	street VARCHAR(255) NOT NULL,
+CREATE TABLE vacancy(
+    id SERIAL,
+    company_id INTEGER,
+    name VARCHAR(255) NOT NULL,
+    scholarship DOUBLE PRECISION NOT NULL,
+    workload INTEGER NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    street VARCHAR(255) NOT NULL,
     number INTEGER NOT NULL,
     neighborhood VARCHAR(255) NOT NULL,
     city VARCHAR(20) NOT NULL,
@@ -52,8 +52,8 @@ CREATE TABLE vacancy (
         ON DELETE CASCADE
 );
 
-CREATE TABLE student_course (
-	id SERIAL,
+CREATE TABLE student_course(
+    id SERIAL,
     student_id INTEGER,
     institution VARCHAR(100),
     name VARCHAR(255) NOT NULL,
@@ -67,9 +67,9 @@ CREATE TABLE student_course (
     FOREIGN KEY (student_id)
         REFERENCES student(id) 
         ON DELETE CASCADE
-);	
+);
 
-CREATE TABLE student_telephone (
+CREATE TABLE student_telephone(
     id SERIAL,
     student_id INTEGER,
     telephone_number VARCHAR(15) UNIQUE NOT NULL,
@@ -79,7 +79,7 @@ CREATE TABLE student_telephone (
         ON DELETE CASCADE
 );
 
-CREATE TABLE student_social (
+CREATE TABLE student_social(
     id SERIAL,
     student_id INTEGER,
     name VARCHAR(20) NOT NULL,
@@ -90,13 +90,13 @@ CREATE TABLE student_social (
         ON DELETE CASCADE
 );
 
-CREATE TABLE requirement (
+CREATE TABLE requirement(
     id SERIAL,
     requirement VARCHAR(100),
     PRIMARY KEY (id)
 );
 
-CREATE TABLE vacancy_requirement (
+CREATE TABLE vacancy_requirement(
     vacancy_id INTEGER,
     requirement_id INTEGER,
     FOREIGN KEY (vacancy_id)
@@ -107,7 +107,7 @@ CREATE TABLE vacancy_requirement (
         ON DELETE CASCADE
 );
 
-CREATE TABLE student_vacancy (
+CREATE TABLE student_vacancy(
     student_id INTEGER,
     vacancy_id INTEGER,
     FOREIGN KEY (student_id)
@@ -118,13 +118,13 @@ CREATE TABLE student_vacancy (
         ON DELETE CASCADE
 );
 
-CREATE TABLE occupation_area (
+CREATE TABLE occupation_area(
     id SERIAL,
     occupation_area VARCHAR(100),
     PRIMARY KEY (id)
 );
 
-CREATE TABLE student_occupation_area (
+CREATE TABLE student_occupation_area(
     student_id INTEGER,
     occupation_area_id INTEGER,
     FOREIGN KEY (student_id)
@@ -135,7 +135,7 @@ CREATE TABLE student_occupation_area (
         ON DELETE CASCADE
 );
 
-CREATE TABLE vacancy_occupation_area (
+CREATE TABLE vacancy_occupation_area(
     vacancy_id INTEGER,
     occupation_area_id INTEGER,
     FOREIGN KEY (vacancy_id)

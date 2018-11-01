@@ -1,6 +1,6 @@
 INSERT INTO company
     (email, password, cnpj, razao_social, street, number, neighborhood, city, postal_code, state)
- VALUES
+VALUES
     ('datacenter@email.com', '1111', '00000000000100', 'Data Center', 'Rua de cima', 1, 'centro', 'Campina Grande', '58135000', 'paraíba'),
     ('provedor@email.com', '1111', '00000000000101', 'Provedor de Internet', 'Rua de baixo', 2, 'centro', 'Campina Grande', '58135000', 'paraíba'),
     ('lojaeletronica@email.com', '1111', '00000000000102', 'Loja de Eletronicos', 'Rua do lado', 3, 'centro', 'Campina Grande', '58135000', 'paraíba');
@@ -29,56 +29,55 @@ VALUES
 INSERT INTO vacancy
     (company_id, name, scholarship, workload, description, street, number, neighborhood, city, postal_code, state)
 VALUES
-    (20, 'Assistente de tecnico em redes', 600.0, 6, 'Ajudar o tecnico em redes a estruturar e dar assistencia tecnica a rede de computadores', 'Rua de cima', 1, 'centro', 'Campina Grande', '58135000', 'paraíba'),
-    (18, 'Assistente de tecnico em campo', 200, 4, 'Prestar assistencia ao tecnico em visitas', 'Rua de baixo', 2, 'centro', 'Campina Grande', '58135000', 'paraíba'),
-    (19, 'Manutenção dos computadores e impressoras', 900, 6, 'Manter os equipamentos da loja funcionando', 'Rua do lado', 3, 'centro', 'Campina Grande', '58135000', 'paraíba');
+    (1, 'Assistente de tecnico em redes', 600.0, 6, 'Ajudar o tecnico em redes a estruturar e dar assistencia tecnica a rede de computadores', 'Rua de cima', 1, 'centro', 'Campina Grande', '58135000', 'paraíba'),
+    (2, 'Assistente de tecnico em campo', 200, 4, 'Prestar assistencia ao tecnico em visitas', 'Rua de baixo', 2, 'centro', 'Campina Grande', '58135000', 'paraíba'),
+    (3, 'Manutenção dos computadores e impressoras', 900, 6, 'Manter os equipamentos da loja funcionando', 'Rua do lado', 3, 'centro', 'Campina Grande', '58135000', 'paraíba');
 
 INSERT INTO student_course
     (student_id, institution, name, reference_period, ingress_period, ingress_way, conclusion_year, IRA, shift)
 VALUES
-    (17, 'IFPB', 'Telematica', 3, '2017.2', 'enem', '2019', 8.2, 'manhã'),
-    (16, 'IFPB', 'Telematica', 3, '2017.2', 'enem', '2019', 8.9, 'manhã'),
-    (18, 'IFPB', 'Eng. Computação', 2, '2014.1', 'enem', '2019', 7.9, 'manhã');
+    (1, 'IFPB', 'Telematica', 3, '2017.2', 'enem', '2019', 8.2, 'manhã'),
+    (2, 'IFPB', 'Telematica', 3, '2017.2', 'enem', '2019', 8.9, 'manhã'),
+    (3, 'IFPB', 'Eng. Computação', 2, '2014.1', 'enem', '2019', 7.9, 'manhã');
 
 INSERT INTO student_telephone
     (student_id, telephone_number)
 VALUES
-    (17, '(83) 99603-9682'),
-    (16, '(83) 99999-9999'),
-    (18, '(83) 88888-8888');
+    (1, '(83) 99603-9682'),
+    (2, '(83) 99999-9999'),
+    (3, '(83) 88888-8888');
 
 INSERT INTO student_social
     (student_id, name, url_profile)
 VALUES
-    (16, 'Instagram', 'www.instagram.com/felipef.bs/'),
-    (17, 'Instagram', 'www.instagram.com/h3nry.ns/'),
-    (18, 'Instagram', 'www.instagram.com/danillocavalcante/');
+    (1, 'Instagram', 'www.instagram.com/felipef.bs/'),
+    (2, 'Instagram', 'www.instagram.com/h3nry.ns/'),
+    (3, 'Instagram', 'www.instagram.com/danillocavalcante/');
 
 INSERT INTO vacancy_requirement
     (vacancy_id, requirement_id)
 VALUES
-    (21, 1),
-    (19, 2),
-    (20, 3);
+    (1, 1),
+    (2, 2),
+    (3, 3);
 
 INSERT INTO student_vacancy
     (student_id, vacancy_id)
 VALUES
-    (17,21),
-    (16,19),
-    (18,20);
+    (1, 1),
+    (2, 2),
+    (3, 3);
 
 INSERT INTO student_occupation_area
     (student_id, occupation_area_id)
 VALUES
-    (17,1),
-    (16,2),
-    (18,3);
+    (1, 1),
+    (2, 2),
+    (3, 3);
 
 INSERT INTO vacancy_occupation_area
     (vacancy_id, occupation_area_id)
 VALUES
-    (21,1),
-    (19,2),
-    (20,3);
-
+    (1, 1),
+    (2, 2),
+    (3, 3);
