@@ -86,7 +86,6 @@ class LoginActivity : AppCompatActivity() {
         if (cancel) {
             focusView?.requestFocus()
         } else {
-            var server = Server()
             var userId = 0
 
             when {
@@ -96,13 +95,13 @@ class LoginActivity : AppCompatActivity() {
                 this.user == "Estudante" -> {
                     startRequest()
                     progressBarLogin.visibility = ProgressBar.VISIBLE
-                    server.service.signinStudent(email.text.toString(), password.text.toString())
+                    Server.service.signinStudent(email.text.toString(), password.text.toString())
                             .subscribeOn(Schedulers.io())
                             .unsubscribeOn(Schedulers.computation())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe({
-                                userId = it.id
-                                Toast.makeText(baseContext, "Foi $userId", Toast.LENGTH_SHORT)
+                                Server.userID = it.id
+                                Toast.makeText(baseContext, "Foi ${Server.userID}", Toast.LENGTH_SHORT)
                                         .show()
 
                                 intent = Intent(baseContext, MainStudentActivity::class.java)
@@ -112,18 +111,23 @@ class LoginActivity : AppCompatActivity() {
                 }
                 else -> {
                     startRequest()
-                    server.service.signinCompany(email.text.toString(), password.text.toString())
+                    Server.service.signinCompany(email.text.toString(), password.text.toString())
                             .subscribeOn(Schedulers.io())
                             .unsubscribeOn(Schedulers.computation())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe({
-                                userId = it.id
-                                Toast.makeText(baseContext, "Foi $userId", Toast.LENGTH_SHORT)
-                                        .show()
+                                if (it != null) {
+                                    Server.userID = it.id
+                                    Toast.makeText(baseContext, "Foi ${Server.userID}", Toast.LENGTH_SHORT)
+                                            .show()
 
-                                intent = Intent(baseContext, MainCompanyActivity::class.java)
-                                startActivity(intent)
-                                finish()
+                                    intent = Intent(baseContext, MainCompanyActivity::class.java)
+                                    startActivity(intent)
+                                    finish()
+                                } else {
+                                    Toast.makeText(baseContext, "Usuario/Senha invalida", Toast.LENGTH_SHORT)
+                                            .show()
+                                }
                             }, { e -> err(e) })
                 }
             }

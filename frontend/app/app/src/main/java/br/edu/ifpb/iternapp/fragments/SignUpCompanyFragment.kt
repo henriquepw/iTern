@@ -106,7 +106,7 @@ class SignUpCompanyFragment : Fragment() {
 
                 Log.i("Company ---------------", company.toString())
 
-                val service = Server().service
+                val service = Server.service
                 service.insertCompany(company)
                         .subscribeOn(Schedulers.io())
                         .unsubscribeOn(Schedulers.computation())

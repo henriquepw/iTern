@@ -159,7 +159,7 @@ class SignUpStudentFragment : Fragment() {
                 Log.i("Student ---------------", student.toString())
 
                 var studentID = 0
-                val service = Server().service
+                val service = Server.service
 
                 service.insertStudent(student)
                         .subscribeOn(Schedulers.io())

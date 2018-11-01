@@ -23,11 +23,11 @@ interface APIService {
     @PUT("student")
     fun updateStudent(@Body student: Student): Observable<Response>
 
-    @DELETE("student")
-    fun deleteStudent(@Body student: Student)
+    @DELETE("student/{id}")
+    fun deleteStudent(@Path("id") id: Int): Observable<String>
 
     @GET("student/{id}")
-    fun getByIdStudent(@Header("id") id: Int): Observable<List<Student>>
+    fun getByIdStudent(@Path("id") id: Int): Observable<List<Student>>
 
     @POST("student/phone")
     fun insertStudentPhone(@Body phone: Phone): Observable<Response>
@@ -51,4 +51,7 @@ interface APIService {
 
     @POST("company")
     fun insertCompany(@Body company: Company): Observable<Response>
+
+    @DELETE("company/{id}")
+    fun deleteCompany(@Path("id") id: Int): Observable<String>
 }

@@ -1,10 +1,7 @@
 module.exports = app => {
     const insert = (req, res) => {
-        const company = { ...req.body
-        }
-
-        console.log({ ...company
-        })
+        const company = { ...req.body }
+        console.log({ ...company })
 
         app.db('company')
             .insert(company)
@@ -23,17 +20,23 @@ module.exports = app => {
 
         app.db('company')
             .update(company)
-            .where({ id: req.params.id })
+            .where({ 
+                id: req.params.id 
+            })
             .then(_ => res.status(204).send())
             .catch(err => res.status(500).send(err))
     }
 
     const remove = (req, res) => {
+        console.log(req.params.id)
+
         app.db('company')
             .delete()
-            .where({id: req.params.id})
+            .where({
+                id: req.params.id
+            })
             .then(_ => {
-                res.status(200).send('Conta apagada!') 
+                res.status(204).send() 
             })
             .catch(err => res.status(500).send(err))
     }

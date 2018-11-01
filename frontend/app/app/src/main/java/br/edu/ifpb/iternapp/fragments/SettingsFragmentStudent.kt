@@ -9,10 +9,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 
 import br.edu.ifpb.iternapp.R
+import br.edu.ifpb.iternapp.activities.LoginActivity
 import br.edu.ifpb.iternapp.activities.add.AddCourseActivity
 import br.edu.ifpb.iternapp.activities.edit.EditStudentActivity
+import br.edu.ifpb.iternapp.conection.Server
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.dialog_choice.view.*
 import kotlinx.android.synthetic.main.dialog_network.view.*
 import kotlinx.android.synthetic.main.fragment_settings_student.*
@@ -37,8 +42,22 @@ class SettingsFragmentStudent : Fragment() {
             }
 
             view.btYes.setOnClickListener {
-                // Deletar Studante
-                dialog?.dismiss()
+                val service = Server.service
+                service.deleteStudent(Server.userID)
+                        .subscribeOn(Schedulers.io())
+                        .unsubscribeOn(Schedulers.computation())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({ msg ->
+                            Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show()
+
+                            dialog?.dismiss()
+
+                            startActivity(Intent(activity, LoginActivity::class.java))
+                            activity?.finish()
+                        }, { msg ->
+                            Toast.makeText(activity, msg.message, Toast.LENGTH_SHORT).show()
+                            dialog?.dismiss()
+                        })
             }
 
             showDialog(view)

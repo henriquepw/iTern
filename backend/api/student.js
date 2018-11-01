@@ -1,7 +1,6 @@
 module.exports = app => {
     const insert = (req, res) => {
         const student = { ...req.body }
-        
         console.log({ ...student })
 
         app.db('student')
@@ -19,7 +18,9 @@ module.exports = app => {
 
         app.db('student')
             .update(student)
-            .where({ id: req.params.id })
+            .where({ 
+                id: req.params.id 
+            })
             .then(_ => res.status(204).send())
             .catch(err => res.status(500).send(err))
     }
@@ -27,7 +28,9 @@ module.exports = app => {
     const remove = (req, res) => {
         app.db('student')
             .delete()
-            .where({id: req.params.id})
+            .where({
+                id: req.params.id
+            })
             .then(_ => {
                 res.status(204).send('Conta apagada!') 
             })
@@ -55,7 +58,9 @@ module.exports = app => {
     const getById = (req, res) => {
         app.db('student')
             .select()
-            .where({ id: req.params.id })
+            .where({ 
+                id: req.params.id 
+            })
             .first()
             .then(student => res.json(student))
             .catch(err => res.status(500).send(err))  
