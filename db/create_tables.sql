@@ -48,7 +48,8 @@ CREATE TABLE vacancy (
     state VARCHAR(20) NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (company_id)
-        REFERENCES company (id),
+        REFERENCES company (id) 
+        ON DELETE CASCADE
 );
 
 CREATE TABLE student_course (
@@ -64,7 +65,8 @@ CREATE TABLE student_course (
     shift VARCHAR(10) NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (student_id)
-        REFERENCES student(id),
+        REFERENCES student(id) 
+        ON DELETE CASCADE
 );	
 
 CREATE TABLE student_telephone (
@@ -73,7 +75,8 @@ CREATE TABLE student_telephone (
     telephone_number VARCHAR(15) UNIQUE NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (student_id)
-        references student(id)
+        REFERENCES student(id) 
+        ON DELETE CASCADE
 );
 
 CREATE TABLE student_social (
@@ -83,7 +86,8 @@ CREATE TABLE student_social (
     url_profile VARCHAR(255) NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (student_id)
-        REFERENCES student(id)
+        REFERENCES student(id) 
+        ON DELETE CASCADE
 );
 
 CREATE TABLE requirement (
@@ -96,18 +100,22 @@ CREATE TABLE vacancy_requirement (
     vacancy_id INTEGER,
     requirement_id INTEGER,
     FOREIGN KEY (vacancy_id)
-        REFERENCES vacancy(id),
+        REFERENCES vacancy(id) 
+        ON DELETE CASCADE,
     FOREIGN KEY (requirement_id)
-        REFERENCES requirement(id)
+        REFERENCES requirement(id) 
+        ON DELETE CASCADE
 );
 
 CREATE TABLE student_vacancy (
     student_id INTEGER,
     vacancy_id INTEGER,
     FOREIGN KEY (student_id)
-        REFERENCES student(id),
+        REFERENCES student(id) 
+        ON DELETE CASCADE,
     FOREIGN KEY (vacancy_id)
-        REFERENCES vacancy(id)
+        REFERENCES vacancy(id) 
+        ON DELETE CASCADE
 );
 
 CREATE TABLE occupation_area (
@@ -120,17 +128,20 @@ CREATE TABLE student_occupation_area (
     student_id INTEGER,
     occupation_area_id INTEGER,
     FOREIGN KEY (student_id)
-        REFERENCES student(id),
+        REFERENCES student(id) 
+        ON DELETE CASCADE,
     FOREIGN KEY (occupation_area_id)
-        REFERENCES occupation_area(id)
+        REFERENCES occupation_area(id) 
+        ON DELETE CASCADE
 );
 
 CREATE TABLE vacancy_occupation_area (
     vacancy_id INTEGER,
     occupation_area_id INTEGER,
     FOREIGN KEY (vacancy_id)
-        REFERENCES vacancy(id),
+        REFERENCES vacancy(id) 
+        ON DELETE CASCADE,
     FOREIGN KEY (occupation_area_id)
-        REFERENCES occupation_area(id)
+        REFERENCES occupation_area(id) 
+        ON DELETE CASCADE
 );
-

@@ -22,4 +22,7 @@ module.exports = app => {
     app.route('/company')
         .post(app.api.company.insert)
         .get(app.api.company.get)
+
+    app.route('/company/:id')
+        .delete(app.api.company.remove)
 }
