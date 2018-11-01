@@ -6,11 +6,6 @@ module.exports = app => {
         .post(app.api.student.insert)
         .get(app.api.student.get)
 
-    app.route('/student/:id')
-        .put(app.api.student.update)
-        .get(app.api.student.getById)
-        .delete(app.api.student.remove)
-
     app.route('/student/phone')
         .post(app.api.student.insertPhone)
         //.get(app.api.student.getAllPhone)
@@ -19,10 +14,16 @@ module.exports = app => {
         .post(app.api.student.insertCourse)
         //.get(app.api.student.getAllCourse)
 
+    app.route('/student/:id')
+        .delete(app.api.student.remove)
+        .put(app.api.student.update)
+        .get(app.api.student.getById)
+
     app.route('/company')
         .post(app.api.company.insert)
         .get(app.api.company.get)
 
     app.route('/company/:id')
         .delete(app.api.company.remove)
+        .put(app.api.company.update)
 }

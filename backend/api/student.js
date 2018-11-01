@@ -19,13 +19,19 @@ module.exports = app => {
 
         app.db('student')
             .update(student)
-            .where({ id: student.id })
+            .where({ id: req.params.id })
             .then(_ => res.status(204).send())
             .catch(err => res.status(500).send(err))
     }
 
     const remove = (req, res) => {
-        
+        app.db('student')
+            .delete()
+            .where({id: req.params.id})
+            .then(_ => {
+                res.status(204).send('Conta apagada!') 
+            })
+            .catch(err => res.status(500).send(err))
     }
 
     const signin = (req, res) => {
@@ -43,6 +49,7 @@ module.exports = app => {
         app.db('student')
             .select()
             .then(students => res.json(students))
+            .catch(err => res.status(500).send(err))  
     }
 
     const getById = (req, res) => {
@@ -88,9 +95,9 @@ module.exports = app => {
 
     return { 
         insert, insertPhone, insertCourse,
+        get, getById, getAllPhone,
         update, 
         remove, 
-        signin, 
-        get, getById, getAllPhone
+        signin
     }
 }

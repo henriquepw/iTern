@@ -19,15 +19,22 @@ module.exports = app => {
     }
 
     const update = (req, res) => {
-        const company = { ...req.body
-        }
+        const company = { ...req.body }
 
         app.db('company')
             .update(company)
-            .where({
-                id: company.id
-            })
+            .where({ id: req.params.id })
             .then(_ => res.status(204).send())
+            .catch(err => res.status(500).send(err))
+    }
+
+    const remove = (req, res) => {
+        app.db('company')
+            .delete()
+            .where({id: req.params.id})
+            .then(_ => {
+                res.status(200).send('Conta apagada!') 
+            })
             .catch(err => res.status(500).send(err))
     }
 
@@ -61,16 +68,11 @@ module.exports = app => {
             .catch(err => res.status(500).send(err))
     }
 
-    const remove = (req, res) => {
-
-    }
-
     return {
         insert,
+        get, getById,
         update,
-        signin,
-        get,
-        getById,
-        remove
+        remove,
+        signin
     }
 }
