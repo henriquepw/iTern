@@ -32,7 +32,7 @@ module.exports = app => {
                 id: req.params.id
             })
             .then(_ => {
-                res.status(204).send('Conta apagada!') 
+                res.json({ id: 0 })
             })
             .catch(err => res.status(500).send(err))
     }

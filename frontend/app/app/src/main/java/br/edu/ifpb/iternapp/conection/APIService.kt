@@ -24,7 +24,7 @@ interface APIService {
     fun updateStudent(@Body student: Student): Observable<Response>
 
     @DELETE("student/{id}")
-    fun deleteStudent(@Path("id") id: Int): Observable<String>
+    fun deleteStudent(@Path("id") id: Int): Observable<Response>
 
     @GET("student/{id}")
     fun getByIdStudent(@Path("id") id: Int): Observable<List<Student>>
@@ -53,5 +53,5 @@ interface APIService {
     fun insertCompany(@Body company: Company): Observable<Response>
 
     @DELETE("company/{id}")
-    fun deleteCompany(@Path("id") id: Int): Observable<String>
+    fun deleteCompany(@Path("id") id: Int): Observable<Response>
 }

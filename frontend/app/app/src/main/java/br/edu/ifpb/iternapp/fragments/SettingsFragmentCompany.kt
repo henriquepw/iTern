@@ -40,19 +40,22 @@ class SettingsFragmentCompany : Fragment() {
             }
 
             view.btYes.setOnClickListener {
-                if (Server.userID != 0){
+                if (Server.userID != 0) {
                     val service = Server.service
                     service.deleteCompany(Server.userID)
                             .subscribeOn(Schedulers.io())
                             .unsubscribeOn(Schedulers.computation())
                             .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe({
-                                Toast.makeText(activity, "Conta apagada", Toast.LENGTH_SHORT).show()
+                            .subscribe({ res ->
+                                Toast.makeText(activity,
+                                        "Conta apagada", Toast.LENGTH_SHORT).show()
+                                Server.userID = res.id
 
                                 startActivity(Intent(activity, LoginActivity::class.java))
                                 activity?.finish()
                             }, { msg ->
-                                Toast.makeText(activity, "Erro ${msg.message}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(activity, "Erro ${msg.message}", Toast.LENGTH_SHORT)
+                                        .show()
                                 dialog?.dismiss()
                             })
                 } else {

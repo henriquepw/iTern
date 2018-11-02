@@ -111,7 +111,7 @@ class SignUpCompanyFragment : Fragment() {
                         .subscribeOn(Schedulers.io())
                         .unsubscribeOn(Schedulers.computation())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({ _ ->
+                        .subscribe({
                             progress.visibility = ProgressBar.VISIBLE
                         }, {
                             Toast.makeText(activity, "${it.message}", Toast.LENGTH_SHORT)

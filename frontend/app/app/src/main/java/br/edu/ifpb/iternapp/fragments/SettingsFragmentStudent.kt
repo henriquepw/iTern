@@ -47,10 +47,10 @@ class SettingsFragmentStudent : Fragment() {
                         .subscribeOn(Schedulers.io())
                         .unsubscribeOn(Schedulers.computation())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({ msg ->
-                            Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show()
-
-                            dialog?.dismiss()
+                        .subscribe({ res ->
+                            Toast.makeText(activity,
+                                    "Conta apagada", Toast.LENGTH_SHORT).show()
+                            Server.userID = res.id
 
                             startActivity(Intent(activity, LoginActivity::class.java))
                             activity?.finish()
