@@ -26,4 +26,8 @@ module.exports = app => {
     app.route('/company/:id')
         .delete(app.api.company.remove)
         .put(app.api.company.update)
+
+    app.route('/vacancy')
+        .post(app.api.vacancy.insert)
+        .get(app.api.vacancy.get)
 }

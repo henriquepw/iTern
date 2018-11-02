@@ -40,20 +40,13 @@ class SignUpStudentFragment : Fragment() {
 
         var progress = activity!!.findViewById(R.id.progressBar) as ProgressBar
 
-        setMask(txDate, "NN/NN/NNNN")
-        setMask(txPhone, "(NN) NNNNN-NNNN")
-        setMask(txCourseReferencePeriod, "N")
-        setMask(txCourseIngressYear, "NNNN.N")
-        setMask(txCourseConclusionYear, "NNNN")
+        Server.setMask(txDate, "NN/NN/NNNN")
+        Server.setMask(txPhone, "(NN) NNNNN-NNNN")
+        Server.setMask(txCourseReferencePeriod, "N")
+        Server.setMask(txCourseIngressYear, "NNNN.N")
+        Server.setMask(txCourseConclusionYear, "NNNN")
 
-        val states = arrayOf(
-                "Acre (AC)", "Alagoas (AL)", "Amapá (AP)", "Amazonas (AM)",
-                "Bahia (BA)", "Ceará (CE)", "Distrito Federal (DF)", "Espírito Santo (ES)",
-                "Goiás (GO)", "Maranhão (MA)", "Mato Grosso (MT)", "Mato Grosso do Sul (MS)",
-                "Minas Gerais (MG)", "Pará (PA)", "Paraíba (PB)", "Paraná (PR)",
-                "Pernambuco (PE)", "Piauí (PI)", "Rio de Janeiro (RJ)", "Rio Grande do Norte (RN)",
-                "Rio Grande do Sul (RS)", "Rondônia (RO)", "Roraima (RR)", "Santa Catarina (SC)",
-                "São Paulo (SP)", "Sergipe (SE)", "Tocantins (TO)")
+        val states = Server.STATES
 
         var state: String? = null
 
@@ -62,7 +55,7 @@ class SignUpStudentFragment : Fragment() {
 
         spStates.onItemClickListener = OnItemClickListener { _, _, position, _ ->
             state = states[position]
-            Toast.makeText(activity, states[position], Toast.LENGTH_SHORT).show()
+            Server.toask(activity!!, states[position], false)
         }
 
         btNext.setOnClickListener {
@@ -138,7 +131,6 @@ class SignUpStudentFragment : Fragment() {
             }
 
             if (!cancel) {
-
                 val student = Student(
                         txEemail.text.toString(),
                         txPassword.text.toString(),
@@ -158,25 +150,21 @@ class SignUpStudentFragment : Fragment() {
 
                 Log.i("Student ---------------", student.toString())
 
-                var studentID = 0
                 val service = Server.service
 
                 service.insertStudent(student)
                         .subscribeOn(Schedulers.io())
                         .unsubscribeOn(Schedulers.computation())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({
+                        .subscribe({ res ->
                             progress.visibility = ProgressBar.VISIBLE
-                            studentID = it.id
-                        }, {
+                            Server.userID = res.id
+                            Server.toask(activity!!, "Foi ${Server.userID}")
+                        }, { res ->
                             progress.visibility = ProgressBar.GONE
-                            Toast.makeText(activity, "${it.message}", Toast.LENGTH_SHORT)
-                                    .show()
-                            Log.v("Error", it.message)
+                            Server.toask(activity!!, "${res.message}")
+                            Log.v("Error", res.message)
                         }, {
-                            Toast.makeText(activity, "Foi $studentID", Toast.LENGTH_SHORT)
-                                    .show()
-
                             /*val phone = Phone(
                                     studentID,
                                     txPhone.text.toString())
@@ -226,14 +214,8 @@ class SignUpStudentFragment : Fragment() {
                         })
             } else {
                 focusView?.requestFocus()
-                Toast.makeText(activity, "Preencha os obrigatorios", Toast.LENGTH_SHORT)
-                        .show()
+                Server.toask(activity!!, "Preencha os obrigatorios")
             }
         }
-    }
-
-    private fun setMask(view: EditText, mask: String) {
-        val mtw = MaskTextWatcher(view, SimpleMaskFormatter(mask))
-        view.addTextChangedListener(mtw)
     }
 }

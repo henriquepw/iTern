@@ -31,18 +31,13 @@ class SignUpCompanyFragment : Fragment() {
 
         var progress = activity!!.findViewById(R.id.progressBar) as ProgressBar
 
-        val states = arrayOf(
-                "Acre (AC)", "Alagoas (AL)", "Amapá (AP)", "Amazonas (AM)",
-                "Bahia (BA)", "Ceará (CE)", "Distrito Federal (DF)", "Espírito Santo (ES)",
-                "Goiás (GO)", "Maranhão (MA)", "Mato Grosso (MT)", "Mato Grosso do Sul (MS)",
-                "Minas Gerais (MG)", "Pará (PA)", "Paraíba (PB)", "Paraná (PR)",
-                "Pernambuco (PE)", "Piauí (PI)", "Rio de Janeiro (RJ)", "Rio Grande do Norte (RN)",
-                "Rio Grande do Sul (RS)", "Rondônia (RO)", "Roraima (RR)", "Santa Catarina (SC)",
-                "São Paulo (SP)", "Sergipe (SE)", "Tocantins (TO)")
+        val states = Server.STATES
 
         var state: String? = null
 
-        spStates.setAdapter(ArrayAdapter<String>(activity, android.R.layout.simple_spinner_dropdown_item, states))
+        spStates.setAdapter(ArrayAdapter<String>(activity,
+                android.R.layout.simple_spinner_dropdown_item,
+                states))
 
         spStates.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             state = states[position]
@@ -113,21 +108,17 @@ class SignUpCompanyFragment : Fragment() {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({
                             progress.visibility = ProgressBar.VISIBLE
+                        }, { res ->
+                            Server.toask(activity!!, "${res.message}")
+                            Log.v("Error", res.message)
                         }, {
-                            Toast.makeText(activity, "${it.message}", Toast.LENGTH_SHORT)
-                                    .show()
-                            Log.v("Error", it.message)
-                        }, {
-                            Toast.makeText(activity, "Cadastrado!", Toast.LENGTH_SHORT)
-                                    .show()
-
+                            Server.toask(activity!!, "Cadastrado")
                             startActivity(Intent(activity, LoginActivity::class.java))
                             activity!!.finish()
                         })
             } else {
                 focusView?.requestFocus()
-                Toast.makeText(activity, "Preencha os obrigatorios", Toast.LENGTH_SHORT)
-                        .show()
+                Server.toask(activity!!, "Preencha os obrigatorios")
             }
         }
     }

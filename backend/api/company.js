@@ -72,8 +72,8 @@ module.exports = app => {
     }
 
     return {
-        insert,
         get, getById,
+        insert,
         update,
         remove,
         signin

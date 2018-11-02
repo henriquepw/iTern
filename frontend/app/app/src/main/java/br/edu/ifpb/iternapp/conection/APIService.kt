@@ -6,9 +6,9 @@ import retrofit2.http.*
 
 interface APIService {
 
-    /************
-     *  Student *
-     ************/
+    /***********
+     * Student *
+     ***********/
 
     @GET("student/signin")
     fun signinStudent(@Header("email") email: String,
@@ -41,9 +41,9 @@ interface APIService {
     @GET("student/course/{id}")
     fun getALLStudentCourseById(@Header("id") id: Int): Observable<List<Course>>
 
-    /************
-     *  Company *
-     ************/
+    /***********
+     * Company *
+     ***********/
 
     @GET("company/signin")
     fun signinCompany(@Header("email") email: String,
@@ -54,4 +54,14 @@ interface APIService {
 
     @DELETE("company/{id}")
     fun deleteCompany(@Path("id") id: Int): Observable<Response>
+
+    /***********
+     * Vacancy *
+     ***********/
+    @POST("vacancy")
+    fun insertVacancy(@Body vacancy: Vacancy): Observable<Response>
+
+    @GET("company/vacancy")
+    fun getAllVacancyByCompany(@Header("id") id: Int): Observable<List<Vacancy>>
+
 }
