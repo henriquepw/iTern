@@ -55,7 +55,7 @@ class SignUpStudentFragment : Fragment() {
 
         spStates.onItemClickListener = OnItemClickListener { _, _, position, _ ->
             state = states[position]
-            Server.toask(activity!!, states[position], false)
+            Server.toask(activity!!, state!!, false)
         }
 
         btNext.setOnClickListener {
@@ -160,10 +160,10 @@ class SignUpStudentFragment : Fragment() {
                             progress.visibility = ProgressBar.VISIBLE
                             Server.userID = res.id
                             Server.toask(activity!!, "Foi ${Server.userID}")
-                        }, { res ->
+                        }, { err ->
                             progress.visibility = ProgressBar.GONE
-                            Server.toask(activity!!, "${res.message}")
-                            Log.v("Error", res.message)
+                            Server.toask(activity!!, "${err.message}")
+                            Log.v("Error", err.message)
                         }, {
                             /*val phone = Phone(
                                     studentID,

@@ -12,7 +12,6 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.util.Log
 import android.widget.ProgressBar
-import android.widget.Toast
 import br.edu.ifpb.iternapp.R
 import br.edu.ifpb.iternapp.conection.Server
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -85,51 +84,37 @@ class LoginActivity : AppCompatActivity() {
 
         if (cancel) {
             focusView?.requestFocus()
-        } else {
-            var userId = 0
+        } else when {
+            this.user == "" ->
+                Server.toask(this, "Empresa ou estudane?", false)
+            this.user == "Estudante" -> {
+                startRequest()
+                progressBarLogin.visibility = ProgressBar.VISIBLE
+                Server.service.signinStudent(email.text.toString(), password.text.toString())
+                        .subscribeOn(Schedulers.io())
+                        .unsubscribeOn(Schedulers.computation())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({ res ->
+                            Server.userID = res.id
+                            Server.toask(this, "${res.id}", false)
 
-            when {
-                this.user == "" ->
-                    Toast.makeText(baseContext, "Empresa ou estudane?", Toast.LENGTH_SHORT)
-                            .show()
-                this.user == "Estudante" -> {
-                    startRequest()
-                    progressBarLogin.visibility = ProgressBar.VISIBLE
-                    Server.service.signinStudent(email.text.toString(), password.text.toString())
-                            .subscribeOn(Schedulers.io())
-                            .unsubscribeOn(Schedulers.computation())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe({
-                                Server.userID = it.id
-                                Toast.makeText(baseContext, "Foi ${Server.userID}", Toast.LENGTH_SHORT)
-                                        .show()
+                            intent = Intent(baseContext, MainStudentActivity::class.java)
+                            finishRequest(intent)
+                        }, { e -> err(e) })
+            }
+            else -> {
+                startRequest()
+                Server.service.signinCompany(email.text.toString(), password.text.toString())
+                        .subscribeOn(Schedulers.io())
+                        .unsubscribeOn(Schedulers.computation())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({ res ->
+                            Server.userID = res.id
+                            Server.toask(this, "${res.id}", false)
 
-                                intent = Intent(baseContext, MainStudentActivity::class.java)
-                                startActivity(intent)
-                                finish()
-                            }, { e -> err(e) })
-                }
-                else -> {
-                    startRequest()
-                    Server.service.signinCompany(email.text.toString(), password.text.toString())
-                            .subscribeOn(Schedulers.io())
-                            .unsubscribeOn(Schedulers.computation())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe({
-                                if (it != null) {
-                                    Server.userID = it.id
-                                    Toast.makeText(baseContext, "Foi ${Server.userID}", Toast.LENGTH_SHORT)
-                                            .show()
-
-                                    intent = Intent(baseContext, MainCompanyActivity::class.java)
-                                    startActivity(intent)
-                                    finish()
-                                } else {
-                                    Toast.makeText(baseContext, "Usuario/Senha invalida", Toast.LENGTH_SHORT)
-                                            .show()
-                                }
-                            }, { e -> err(e) })
-                }
+                            intent = Intent(baseContext, MainCompanyActivity::class.java)
+                            finishRequest(intent)
+                        }, { e -> err(e) })
             }
         }
     }
@@ -150,8 +135,7 @@ class LoginActivity : AppCompatActivity() {
 
         progressBarLogin.visibility = ProgressBar.GONE
 
-        Toast.makeText(applicationContext, "${e.message}", Toast.LENGTH_SHORT)
-                .show()
+        Server.toask(this, "${e.message}", false)
         Log.v("Error", e.message)
     }
 
@@ -164,9 +148,7 @@ class LoginActivity : AppCompatActivity() {
         password.isEnabled = false
     }
 
-    private fun finishRequest() {
-        intent = Intent(baseContext, MainStudentActivity::class.java)
-
+    private fun finishRequest(intent: Intent) {
         startActivity(intent)
         finish()
     }

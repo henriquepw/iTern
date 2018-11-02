@@ -41,7 +41,7 @@ class SignUpCompanyFragment : Fragment() {
 
         spStates.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             state = states[position]
-            Toast.makeText(activity, states[position], Toast.LENGTH_SHORT).show()
+            Server.toask(activity!!, state!!, false)
         }
 
         btSignup.setOnClickListener {
