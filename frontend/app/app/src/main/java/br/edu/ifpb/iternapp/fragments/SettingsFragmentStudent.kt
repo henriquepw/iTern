@@ -66,6 +66,7 @@ class SettingsFragmentStudent : Fragment() {
             startActivity(Intent(activity, AddCourseActivity::class.java))
         }
 
+        /*
         btAddNetwork.setOnClickListener {
             val view = layoutInflater.inflate(R.layout.dialog_network, null)
 
@@ -87,6 +88,7 @@ class SettingsFragmentStudent : Fragment() {
 
             showDialog(view)
         }
+        */
 
         btEditStudent.setOnClickListener {
             startActivity(Intent(activity, EditStudentActivity::class.java))

@@ -11,6 +11,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -81,7 +82,7 @@
                         android:id="@+id/txEemail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="email *"
+                        android:hint="E-mail"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
                         android:singleLine="true" />
@@ -97,7 +98,7 @@
                         android:id="@+id/txPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Senha *"
+                        android:hint="Senha"
                         android:imeActionId="6"
                         android:imeActionLabel="@string/action_sign_in_short"
                         android:imeOptions="actionUnspecified"
@@ -140,7 +141,7 @@
                         android:id="@+id/txName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Nome *"
+                        android:hint="Nome"
                         android:inputType="textAutoComplete"
                         android:maxLines="1"
                         android:singleLine="true" />
@@ -156,7 +157,7 @@
                         android:id="@+id/txDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Data de nascimento (DD/MM/AAAA) *"
+                        android:hint="Data de nascimento (DD/MM/AAAA)"
                         android:inputType="date"
                         android:maxLines="1"
                         android:singleLine="true" />
@@ -172,7 +173,7 @@
                         android:id="@+id/txCpf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="CPF *"
+                        android:hint="CPF"
                         android:inputType="number"
                         android:maxLines="1"
                         android:singleLine="true" />
@@ -188,7 +189,7 @@
                         android:id="@+id/txRG"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="RG *"
+                        android:hint="RG"
                         android:inputType="number"
                         android:maxLines="1"
                         android:singleLine="true" />
@@ -204,7 +205,7 @@
                         android:id="@+id/txNaturalidade"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Naturalidade *"
+                        android:hint="Naturalidade"
                         android:inputType="textAutoComplete"
                         android:maxLines="1"
                         android:singleLine="true" />
@@ -220,7 +221,7 @@
                         android:id="@+id/txNacionalidade"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Nacionalidade *"
+                        android:hint="Nacionalidade"
                         android:inputType="textAutoComplete"
                         android:maxLines="1"
                         android:singleLine="true" />
@@ -236,7 +237,7 @@
                         android:id="@+id/txPhone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Telefone *"
+                        android:hint="Telefone"
                         android:inputType="phone"
                         android:maxLines="1"
                         android:singleLine="true" />
@@ -282,7 +283,7 @@
                             android:id="@+id/txStreet"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Rua *"
+                            android:hint="Rua"
                             android:inputType="textAutoComplete" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -298,7 +299,7 @@
                             android:id="@+id/txNumber"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Nº *"
+                            android:hint="Nº"
                             android:inputType="number" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -313,7 +314,7 @@
                         android:id="@+id/txNeigh"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Bairro *"
+                        android:hint="Bairro"
                         android:inputType="textAutoComplete"
                         android:maxLines="1"
                         android:singleLine="true" />
@@ -325,7 +326,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="11dp"
-                    android:hint="Estados *"
+                    android:hint="Estados"
                     android:padding="5dp"
                     app:met_floatingLabel="highlight"
                     app:met_primaryColor="@color/primary" />
@@ -339,7 +340,7 @@
                         android:id="@+id/txCity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Cidade *"
+                        android:hint="Cidade"
                         android:inputType="textAutoComplete"
                         android:maxLines="1"
                         android:singleLine="true" />
@@ -355,108 +356,14 @@
                         android:id="@+id/txPostalCode"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="CEP *"
+                        android:hint="CEP"
                         android:inputType="number"
                         android:maxLines="1"
                         android:singleLine="true" />
 
                 </android.support.design.widget.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
 
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Dados Academicos"
-                        android:textColor="@color/primary"
-                        android:textSize="20dp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@color/primary_light" />
-
-                </LinearLayout>
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/txCourseName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Curso *"
-                    android:inputType="textAutoComplete"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/txCourseReferencePeriod"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Periodo de referência *"
-                    android:inputType="number"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/txCourseIngressYear"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Ano de ingresção (Ano.Periodo) *"
-                    android:inputType="number"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/txCourseIngressWay"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Meio de ingressão *"
-                    android:inputType="textAutoComplete"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/txCourseInstitution"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Instituição"
-                    android:inputType="textAutoComplete"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/txCourseIRA"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="I.R.A *"
-                    android:inputType="numberDecimal"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/txCourseShift"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Turno *"
-                    android:inputType="textAutoComplete"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/txCourseConclusionYear"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Ano de conclusão previsto *"
-                    android:inputType="number"
-                    android:maxLines="1"
-                    android:singleLine="true" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

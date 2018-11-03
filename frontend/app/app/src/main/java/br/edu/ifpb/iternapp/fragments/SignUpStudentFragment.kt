@@ -42,9 +42,11 @@ class SignUpStudentFragment : Fragment() {
 
         Server.setMask(txDate, "NN/NN/NNNN")
         Server.setMask(txPhone, "(NN) NNNNN-NNNN")
+        /*
         Server.setMask(txCourseReferencePeriod, "N")
         Server.setMask(txCourseIngressYear, "NNNN.N")
         Server.setMask(txCourseConclusionYear, "NNNN")
+        */
 
         val states = Server.STATES
 

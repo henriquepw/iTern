@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object Server {
     private val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.0.108:3000/")
+            .baseUrl("http://192.168.0.198:3000/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()

@@ -11,6 +11,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -83,7 +84,7 @@
                         android:id="@+id/txEemail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="E-mail *"
+                        android:hint="E-mail"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
                         android:singleLine="true" />
@@ -99,7 +100,7 @@
                         android:id="@+id/txPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Senha *"
+                        android:hint="Senha"
                         android:imeActionId="6"
                         android:imeActionLabel="@string/action_sign_in_short"
                         android:imeOptions="actionUnspecified"
@@ -118,7 +119,7 @@
                         android:id="@+id/txName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Nome *"
+                        android:hint="Nome"
                         android:inputType="textAutoComplete"
                         android:maxLines="1"
                         android:singleLine="true" />
@@ -134,7 +135,7 @@
                         android:id="@+id/txCnpj"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="CNPJ *"
+                        android:hint="CNPJ"
                         android:inputType="number"
                         android:maxLines="1"
                         android:singleLine="true" />
@@ -196,7 +197,7 @@
                             android:id="@+id/txStreet"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Rua *"
+                            android:hint="Rua"
                             android:inputType="textAutoComplete" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -212,7 +213,7 @@
                             android:id="@+id/txNumber"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Nº *"
+                            android:hint="Nº"
                             android:inputType="number" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -227,7 +228,7 @@
                         android:id="@+id/txNeigh"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Bairro *"
+                        android:hint="Bairro"
                         android:inputType="textAutoComplete"
                         android:maxLines="1"
                         android:singleLine="true" />
@@ -239,7 +240,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="11dp"
-                    android:hint="Estados *"
+                    android:hint="Estados"
                     android:padding="5dp"
                     app:met_floatingLabel="highlight"
                     app:met_primaryColor="@color/primary" />
@@ -253,7 +254,7 @@
                         android:id="@+id/txCity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Cidade *"
+                        android:hint="Cidade"
                         android:inputType="textAutoComplete"
                         android:maxLines="1"
                         android:singleLine="true" />
@@ -269,7 +270,7 @@
                         android:id="@+id/txPostalCode"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="CEP *"
+                        android:hint="CEP"
                         android:inputType="number"
                         android:maxLines="1"
                         android:singleLine="true" />
