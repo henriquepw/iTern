@@ -9,7 +9,6 @@ interface APIService {
     /***********
      * Student *
      ***********/
-
     @GET("student/signin")
     fun signinStudent(@Header("email") email: String,
                       @Header("password") password: String): Observable<Response>
@@ -44,7 +43,6 @@ interface APIService {
     /***********
      * Company *
      ***********/
-
     @GET("company/signin")
     fun signinCompany(@Header("email") email: String,
                       @Header("password") password: String): Observable<Response>
@@ -70,4 +68,9 @@ interface APIService {
     @GET("company/vacancy")
     fun getAllVacancyByCompany(@Header("id") id: Int): Observable<List<Vacancy>>
 
+    /***********
+     * Network *
+     ***********/
+    @POST("network")
+    fun insertNetwork(@Body network: Network): Observable<Response>
 }

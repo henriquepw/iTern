@@ -1,6 +1,6 @@
 package br.edu.ifpb.iternapp.fragments
 
-import android.app.AlertDialog
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
@@ -16,11 +16,9 @@ import android.widget.AdapterView.OnItemClickListener
 import br.edu.ifpb.iternapp.R
 import br.edu.ifpb.iternapp.activities.LoginActivity
 import br.edu.ifpb.iternapp.conection.Server
-import br.edu.ifpb.iternapp.entities.Course
+import br.edu.ifpb.iternapp.entities.Network
 import br.edu.ifpb.iternapp.entities.Phone
 import br.edu.ifpb.iternapp.entities.Student
-import com.github.rtoshiro.util.format.SimpleMaskFormatter
-import com.github.rtoshiro.util.format.text.MaskTextWatcher
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_signup_student.*
@@ -42,11 +40,6 @@ class SignUpStudentFragment : Fragment() {
 
         Server.setMask(txDate, "NN/NN/NNNN")
         Server.setMask(txPhone, "(NN) NNNNN-NNNN")
-        /*
-        Server.setMask(txCourseReferencePeriod, "N")
-        Server.setMask(txCourseIngressYear, "NNNN.N")
-        Server.setMask(txCourseConclusionYear, "NNNN")
-        */
 
         val states = Server.STATES
 
@@ -71,11 +64,7 @@ class SignUpStudentFragment : Fragment() {
                     txNaturalidade, txNacionalidade,
                     txPhone, txStreet,
                     txNumber, txNeigh,
-                    txCity, txPostalCode/*,
-                    txCourseName, txCourseReferencePeriod,
-                    txCourseIngressYear, txCourseIngressWay,
-                    txCourseInstitution, txCourseIRA,
-                    txCourseShift, txCourseConclusionYear*/)
+                    txCity, txPostalCode)
             textViews.reverse()
 
             spStates.error = null
@@ -109,18 +98,6 @@ class SignUpStudentFragment : Fragment() {
             if (txPhone.text.toString().length != 15) {
                 txPhone.error = "Campo incompleto"
                 focusView = txPhone
-                cancel = true
-            }
-
-            if (txCourseIngressYear.text.toString().length != 6) {
-                txCourseIngressYear.error = "Campo incompleto"
-                focusView = txCourseIngressYear
-                cancel = true
-            }
-
-            if (txCourseConclusionYear.text.toString().length != 4) {
-                txCourseConclusionYear.error = "Campo incompleto"
-                focusView = txCourseConclusionYear
                 cancel = true
             }*/
 
@@ -167,56 +144,55 @@ class SignUpStudentFragment : Fragment() {
                             Server.toask(activity!!, "${err.message}")
                             Log.v("Error", err.message)
                         }, {
-                            /*val phone = Phone(
-                                    studentID,
+                            val phone = Phone(
+                                    Server.userID,
                                     txPhone.text.toString())
 
                             service.insertStudentPhone(phone)
                                     .subscribeOn(Schedulers.io())
                                     .unsubscribeOn(Schedulers.computation())
                                     .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe({}, { e ->
+                                    .subscribe({
+                                        addNetworks(progress)
+                                    }, { err ->
                                         progress.visibility = ProgressBar.GONE
-                                        Toast.makeText(activity, "${e.message}", Toast.LENGTH_SHORT)
-                                                .show()
-                                        Log.v("Error", e.message)
-                                    }, {
-                                        progress.visibility = ProgressBar.GONE
-                                        Toast.makeText(activity, "phone save", Toast.LENGTH_SHORT)
-                                                .show()
-
-                                        startActivity(Intent(activity, LoginActivity::class.java))
-                                        activity!!.finish()
+                                        Server.toask(activity!!, "${err.message}")
+                                        Log.v("Error", err.message)
                                     })
 
-                            val course = Course(
-                                    studentID,
-                                    txCourseInstitution.text.toString(),
-                                    txCourseName.text.toString(),
-                                    txCourseReferencePeriod.text.toString(),
-                                    txCourseIngressYear.text.toString(),
-                                    txCourseIngressWay.text.toString(),
-                                    txCourseConclusionYear.text.toString(),
-                                    txCourseIRA.text.toString().toDouble(),
-                                    txCourseShift.text.toString())
 
-                            service.insertStudentCourse(course)
-                                    .subscribeOn(Schedulers.io())
-                                    .unsubscribeOn(Schedulers.computation())
-                                    .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe({
-
-                                    }, {
-                                        Toast.makeText(activity, "${it.message}", Toast.LENGTH_SHORT)
-                                              .show()
-                                        Log.v("Error", it.message)
-                                    }, {
-
-                                    })*/
                         })
             } else {
                 focusView?.requestFocus()
                 Server.toask(activity!!, "Preencha os obrigatorios")
+            }
+        }
+    }
+
+    @SuppressLint("CheckResult")
+    private fun addNetworks(progress: ProgressBar) {
+        val textViews = arrayOf(txLinkedin, txGithub)
+
+        for (tv in textViews) {
+            if (!TextUtils.isEmpty(tv.text.toString())) {
+                val network = Network(
+                        Server.userID,
+                        tv.hint.toString(),
+                        tv.text.toString())
+
+                Server.service.insertNetwork(network)
+                        .subscribeOn(Schedulers.io())
+                        .unsubscribeOn(Schedulers.computation())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({
+                            progress.visibility = ProgressBar.GONE
+                            Server.toask(activity!!, "Salvo")
+
+                            startActivity(Intent(activity, LoginActivity::class.java))
+                            activity!!.finish()
+                        }, { err ->
+                            Server.toask(activity!!, "${err.message}")
+                        })
             }
         }
     }
