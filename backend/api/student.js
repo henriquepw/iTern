@@ -21,7 +21,9 @@ module.exports = app => {
             .where({ 
                 id: req.params.id 
             })
-            .then(_ => res.status(204).send())
+            .then(_ => res.json({
+                id: req.params.id
+            }))
             .catch(err => res.status(500).send(err))
     }
 
@@ -56,14 +58,19 @@ module.exports = app => {
     }
 
     const getById = (req, res) => {
+        console.log(req.params.id)
         app.db('student')
             .select()
-            .where({ 
-                id: req.params.id 
+            .where({
+                id: req.params.id
             })
             .first()
-            .then(student => res.json(student))
-            .catch(err => res.status(500).send(err))  
+            .then(student => {
+                delete student.id
+                console.log(student)
+                res.json(student)
+            })
+            .catch(err => res.status(500).send(err))
     }
 
     const insertPhone = (req, res) => {

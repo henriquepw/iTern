@@ -20,14 +20,14 @@ interface APIService {
     @GET("student")
     fun getAllStudent(): Observable<List<Student>>
 
-    @PUT("student")
-    fun updateStudent(@Body student: Student): Observable<Response>
+    @PUT("student/{id}")
+    fun updateStudent(@Path("id") id: Int, @Body student: Student): Observable<Response>
 
     @DELETE("student/{id}")
     fun deleteStudent(@Path("id") id: Int): Observable<Response>
 
     @GET("student/{id}")
-    fun getByIdStudent(@Path("id") id: Int): Observable<List<Student>>
+    fun getStudentById(@Path("id") id: Int): Observable<Student>
 
     @POST("student/phone")
     fun insertStudentPhone(@Body phone: Phone): Observable<Response>
@@ -48,6 +48,12 @@ interface APIService {
     @GET("company/signin")
     fun signinCompany(@Header("email") email: String,
                       @Header("password") password: String): Observable<Response>
+
+    @GET("company/{id}")
+    fun getCompanyById(@Path("id") id: Int): Observable<Company>
+
+    @PUT("company/{id}")
+    fun updateCompany(@Path("id") id: Int, @Body company: Company): Observable<Response>
 
     @POST("company")
     fun insertCompany(@Body company: Company): Observable<Response>

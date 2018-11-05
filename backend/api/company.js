@@ -23,7 +23,9 @@ module.exports = app => {
             .where({ 
                 id: req.params.id 
             })
-            .then(_ => res.status(204).send())
+            .then(_ => res.json({
+                id: req.params.id
+            }))
             .catch(err => res.status(500).send(err))
     }
 
@@ -61,13 +63,18 @@ module.exports = app => {
     }
 
     const getById = (req, res) => {
+        console.log(req.params.id)
         app.db('company')
             .select()
             .where({
                 id: req.params.id
             })
             .first()
-            .then(company => res.json(company))
+            .then(company => {
+                delete company.id
+                console.log(company)
+                res.json(company)
+            })
             .catch(err => res.status(500).send(err))
     }
 

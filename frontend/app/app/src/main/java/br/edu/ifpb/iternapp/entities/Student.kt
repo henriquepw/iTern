@@ -11,7 +11,7 @@ data class Student(
         var city: String,
         var postal_code: String,
         var state: String,
-        var url_lattes: String,
+        var url_lattes: String?,
         var rg: String,
         var cpf: String,
         var birth_place: String,

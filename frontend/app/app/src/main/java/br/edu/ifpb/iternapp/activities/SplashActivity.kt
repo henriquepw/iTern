@@ -12,8 +12,8 @@ class SplashActivity : AppCompatActivity() {
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        setContentView(R.layout.activity_splash)
 
         object : Thread() {
             override fun run() {
