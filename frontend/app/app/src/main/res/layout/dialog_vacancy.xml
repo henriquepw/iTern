@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/txtName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/firstDivider"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_margin="5dp"
+        android:background="@color/primary_light" />
+
+    <TextView
+        android:id="@+id/txtCompany"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Empresa: "
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txtScholarship"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Auxílio: "
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txtWorkload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Carga horaria: "
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txtDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Descrição: "
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txtAreas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Áreas: "
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btSave"
+            style="@style/AppTheme.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cadastrar" />
+
+    </LinearLayout>
+
+</LinearLayout>

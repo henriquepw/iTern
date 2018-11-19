@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navArea"
+        android:title="Por Area" />
+    <item
+        android:id="@+id/navCompany"
+        android:title="Por empresa" />
+</menu>

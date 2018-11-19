@@ -22,8 +22,30 @@ module.exports = app => {
             .catch(err => res.status(500).send(err))
     }
 
+    const register = (req, res) => {
+        student_vacancy = {
+            student_id: parseInt(req.header('student_id')),
+            vacancy_id: parseInt(req.header('vacancy_id'))
+        }
+
+        console.log(student_vacancy)
+
+        app.db('student_vacancy')
+            .insert(student_vacancy)
+            .then(id => { res.json({ id: 1 }) })
+            .catch(err => { res.status(500).send(err) })
+    }
+
+    const getRegisters = (req, res) => {
+        app.db('student_vacancy')
+            .select()
+            .then(registers => res.json(registers))
+            .catch(err => res.status(500).send(err))
+    }
+
     return {
         insert,
-        get
+        get, getRegisters,
+        register
     }
 }

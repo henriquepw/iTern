@@ -63,10 +63,18 @@ interface APIService {
      * Vacancy *
      ***********/
     @POST("vacancy")
-    fun insertVacancy(@Body vacancy: Vacancy): Observable<Response>
+    fun insertVacancy(@Body vacancy: VacancyInsert): Observable<Response>
 
-    @GET("company/vacancy")
-    fun getAllVacancyByCompany(@Header("id") id: Int): Observable<List<Vacancy>>
+    @GET("vacancy")
+    fun getAllVacancy(): Observable<List<Vacancy>>
+
+    @POST("vacancy/register")
+    fun registerVacancyStudent(@Header("vacancy_id") vacancy_id: Int,
+                               @Header("student_id") student_id: Int): Observable<Response>
+
+    @GET("company/vacancy/{id}")
+    fun getAllVacancyByCompany(@Path("id") id: Int): Observable<List<Vacancy>>
+
 
     /***********
      * Network *

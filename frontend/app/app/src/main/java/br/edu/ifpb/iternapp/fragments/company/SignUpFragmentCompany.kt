@@ -1,4 +1,4 @@
-package br.edu.ifpb.iternapp.fragments
+package br.edu.ifpb.iternapp.fragments.company
 
 import android.content.Intent
 import android.os.Bundle
@@ -19,7 +19,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_signup_company.*
 
 
-class SignUpCompanyFragment : Fragment() {
+class SignUpFragmentCompany : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

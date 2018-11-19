@@ -1,4 +1,4 @@
-package br.edu.ifpb.iternapp.fragments
+package br.edu.ifpb.iternapp.fragments.student
 
 import android.annotation.SuppressLint
 import android.app.Dialog
@@ -24,7 +24,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_signup_student.*
 
 
-class SignUpStudentFragment : Fragment() {
+class SignUpFragmentStudent : Fragment() {
 
     private var dialog: Dialog? = null
 

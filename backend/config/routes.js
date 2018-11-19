@@ -31,6 +31,10 @@ module.exports = app => {
     app.route('/vacancy')
         .post(app.api.vacancy.insert)
         .get(app.api.vacancy.get)
+
+    app.route('/vacancy/register')
+        .post(app.api.vacancy.register)
+        .get(app.api.vacancy.getRegisters)
     
     app.route('/network')
         .post(app.api.network.insert)

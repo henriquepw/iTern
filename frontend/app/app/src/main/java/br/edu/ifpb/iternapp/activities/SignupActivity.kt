@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import br.edu.ifpb.iternapp.R
-import br.edu.ifpb.iternapp.fragments.SignUpCompanyFragment
-import br.edu.ifpb.iternapp.fragments.SignUpStudentFragment
+import br.edu.ifpb.iternapp.fragments.company.SignUpFragmentCompany
+import br.edu.ifpb.iternapp.fragments.student.SignUpFragmentStudent
 import kotlinx.android.synthetic.main.activity_signup.*
 import android.widget.ProgressBar
 
@@ -23,8 +23,8 @@ class SignupActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
 
-        btSignCompany.setOnClickListener { startFragment(SignUpCompanyFragment()) }
-        btSignStudant.setOnClickListener { startFragment(SignUpStudentFragment()) }
+        btSignCompany.setOnClickListener { startFragment(SignUpFragmentCompany()) }
+        btSignStudant.setOnClickListener { startFragment(SignUpFragmentStudent()) }
     }
 
     private fun startFragment(fragment: Fragment) {

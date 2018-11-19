@@ -10,8 +10,8 @@ import android.view.Menu
 import android.view.MenuItem
 import br.edu.ifpb.iternapp.R
 import br.edu.ifpb.iternapp.fragments.HomeFragment
-import br.edu.ifpb.iternapp.fragments.SearchFragment
-import br.edu.ifpb.iternapp.fragments.SettingsFragmentCompany
+import br.edu.ifpb.iternapp.fragments.company.SearchFragmentCompany
+import br.edu.ifpb.iternapp.fragments.company.SettingsFragmentCompany
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainCompanyActivity : AppCompatActivity() {
@@ -33,7 +33,7 @@ class MainCompanyActivity : AppCompatActivity() {
                         return@OnNavigationItemSelectedListener true
                     }
                     R.id.navSearch -> {
-                        startFragment(SearchFragment())
+                        startFragment(SearchFragmentCompany())
                         return@OnNavigationItemSelectedListener true
                     }
                 }

@@ -10,7 +10,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import br.edu.ifpb.iternapp.R
 import br.edu.ifpb.iternapp.conection.Server
-import br.edu.ifpb.iternapp.entities.Vacancy
+import br.edu.ifpb.iternapp.entities.VacancyInsert
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_add_vacancy.*
@@ -72,7 +72,7 @@ class AddVacancyActivity : AppCompatActivity() {
             }
 
             if (!cancel) {
-                val vacancy = Vacancy(
+                val vacancy = VacancyInsert(
                         Server.userID,
                         txName.text.toString(),
                         txWorkload.text.toString().toInt(),

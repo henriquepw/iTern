@@ -1,4 +1,4 @@
-package br.edu.ifpb.iternapp.fragments
+package br.edu.ifpb.iternapp.fragments.student
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -8,8 +8,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Toast
 
 import br.edu.ifpb.iternapp.R
 import br.edu.ifpb.iternapp.activities.LoginActivity
@@ -19,7 +17,6 @@ import br.edu.ifpb.iternapp.conection.Server
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.dialog_choice.view.*
-import kotlinx.android.synthetic.main.dialog_network.view.*
 import kotlinx.android.synthetic.main.fragment_settings_student.*
 
 class SettingsFragmentStudent : Fragment() {
