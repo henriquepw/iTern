@@ -30,10 +30,10 @@ module.exports = app => {
         app.db('vacancy')
             .select()
             .whereRaw(
-                 `id in (
+                 `id not in (
                     select distinct vacancy_id
                     from student_vacancy
-                    where student_id <> ${studentId})`)
+                    where student_id = ${studentId})`)
             .orderBy('name')
             .then(vacancys => {
                 console.log(vacancys)
