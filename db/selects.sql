@@ -50,7 +50,17 @@ iNNER JOIN student_vacancy
 	ON student_vacancy.student_id = student.id
 iNNER JOIN vacancy
 	ON vacancy.id = student_vacancy.vacancy_id 
- 
+
+--VAGA POR TERMO
+SELECT vacancy.*
+FROM vacancy, company
+WHERE vacancy.company_id = company.id AND company.razao_social LIKE '%termo%'
+
+--VAGA POR ID
+SELECT vacancy.*
+FROM vacancy
+WHERE vacancy.company_id = x
+
 SELECT * 
 FROM vacancy v, student_vacancy sv
 WHERE id IN (
