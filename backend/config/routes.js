@@ -14,6 +14,9 @@ module.exports = app => {
         .post(app.api.student.insertCourse)
         //.get(app.api.student.getAllCourse)
 
+    app.route('/student/vacancy/:student_id')
+        .get(app.api.vacancy.getByStudentId)
+
     app.route('/student/:id')
         .delete(app.api.student.remove)
         .put(app.api.student.update)
@@ -37,9 +40,17 @@ module.exports = app => {
         .get(app.api.vacancy.getRegisters)
 
     app.route('/vacancy/:student_id')
-        .get(app.api.vacancy.getByNoId)
-    
+        .get(app.api.vacancy.getByNotRegisted)
+
     app.route('/network')
+        .post(app.api.network.insert)
+        .get(app.api.network.get)
+
+    app.route('/occupation')
+        .post(app.api.network.insert)
+        .get(app.api.network.get)
+
+    app.route('/requirement')
         .post(app.api.network.insert)
         .get(app.api.network.get)
 }

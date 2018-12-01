@@ -106,8 +106,12 @@ module.exports = app => {
     }
 
     return { 
-        insert, insertPhone, insertCourse,
-        get, getById, getAllPhone,
+        insert, 
+        insertPhone, 
+        insertCourse,
+        get, 
+        getById, 
+        getAllPhone,
         update, 
         remove, 
         signin

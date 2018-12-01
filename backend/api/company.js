@@ -79,7 +79,8 @@ module.exports = app => {
     }
 
     return {
-        get, getById,
+        get, 
+        getById,
         insert,
         update,
         remove,

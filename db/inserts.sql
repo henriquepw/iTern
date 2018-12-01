@@ -8,8 +8,8 @@ VALUES
 INSERT INTO student
     (email, password, name, birthday, street, number, neighborhood, city, postal_code, state, url_lattes, cpf, rg, birth_place, citizenship)
 VALUES
-    ('felipe@email.com', '2222', 'Felipe Ferreira', '20/05/1996', 'Rua do Cemiterio', 229, 'Centro', 'Esperança', '58135000', 'Paraiba', 'url_lattes.com/curriculo_felipe', '100.267.364-03', '3.017.280', 'joão pessoa', 'brasileiro'),
-    ('henrique@email.com', '2222', 'Henrique Martins', '17/01/2000', 'Unica Rua de Montadas', 229, 'Centro', 'Montadas', '58135000', 'Paraiba', 'url_lattes.com/curriculo_henrique', '000.000.000-01', '0.000.001', 'Esperança', 'brasileiro'),
+    ('felipe@email.com', '2222', 'Felipe Ferreira', '05/20/1996', 'Rua do Cemiterio', 229, 'Centro', 'Esperança', '58135000', 'Paraiba', 'url_lattes.com/curriculo_felipe', '100.267.364-03', '3.017.280', 'joão pessoa', 'brasileiro'),
+    ('henrique@email.com', '2222', 'Henrique Martins', '12/01/2000', 'Unica Rua de Montadas', 229, 'Centro', 'Montadas', '58135000', 'Paraiba', 'url_lattes.com/curriculo_henrique', '000.000.000-01', '0.000.001', 'Esperança', 'brasileiro'),
     ('danillo@email.com', '2222', 'Danillo Cavalcante', '05/05/1996', 'Rua Riachuelo', 229, 'Centro', 'Campina Grande', '58135000', 'Paraiba', 'url_lattes.com/curriculo_danillo', '000.000.000-02', '0.000.002', 'Campina Grande', 'brasileiro');
 
 INSERT INTO requirement

@@ -24,7 +24,7 @@ module.exports = app => {
             .catch(err => res.status(500).send(err))
     }
 
-    const getByNoId = (req, res) => {
+    const getByNotRegisted = (req, res) => {
         studentId = req.params.student_id
         console.log(studentId)
         app.db('vacancy')
@@ -34,6 +34,24 @@ module.exports = app => {
                     select distinct vacancy_id
                     from student_vacancy
                     where student_id <> ${studentId})`)
+            .orderBy('name')
+            .then(vacancys => {
+                console.log(vacancys)
+                res.json(vacancys)
+            })
+            .catch(err => res.status(500).send(err))
+    }
+
+    const getByStudentId = (req, res) => {
+        studentId = req.params.student_id
+        console.log(studentId)
+        app.db('vacancy')
+            .select()
+            .whereRaw(
+                 `id in (
+                    select distinct vacancy_id
+                    from student_vacancy
+                    where student_id = ${studentId})`)
             .orderBy('name')
             .then(vacancys => {
                 console.log(vacancys)
@@ -71,7 +89,9 @@ module.exports = app => {
 
     return {
         insert,
-        get, getByNoId,
+        get, 
+        getByNotRegisted, 
+        getByStudentId,
         getRegisters,
         register
     }
