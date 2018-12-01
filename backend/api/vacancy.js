@@ -61,15 +61,10 @@ module.exports = app => {
     }
 
     const getByCompany = (req, res) => {
-        studentId = req.params.student_id
-        console.log(studentId)
+        console.log(req.params.id)
         app.db('vacancy')
             .select()
-            .whereRaw(
-                 `id in (
-                    select distinct vacancy_id
-                    from student_vacancy
-                    where student_id = ${studentId})`)
+            .where({company_id: req.params.id})
             .orderBy('name')
             .then(vacancys => {
                 console.log(vacancys)

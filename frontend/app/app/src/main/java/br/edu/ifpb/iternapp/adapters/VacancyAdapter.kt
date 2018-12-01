@@ -33,7 +33,7 @@ class VacancyAdapter(
         return vacancies.size
     }
 
-    private fun removeItem(vacancy: Vacancy){
+    private fun removeItem(vacancy: Vacancy) {
         var pos = vacancies.indexOf(vacancy)
         vacancies.remove(vacancy)
         notifyItemRemoved(pos)
@@ -63,37 +63,36 @@ class VacancyAdapter(
             txtAreas.text = "${txtAreas.text}Pegar Areas ainda"
 
             val btSave = view.findViewById<Button>(R.id.btSave)
-            btSave.setOnClickListener {
-                Server.service.registerVacancyStudent(Server.userID, vacancy.id)
-                        .subscribeOn(Schedulers.io())
-                        .unsubscribeOn(Schedulers.computation())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({
-                            Server.toask(activity, "Cadastrado, Boa sorte!")
-                            removeItem(vacancy)
-                        }, { err ->
-                            Server.toask(activity, "Erro ${err.message}")
-                        })
 
-                dialog?.dismiss()
-            }
+            if (this.type)
+                btSave.setOnClickListener {
+                    Server.service.registerVacancyStudent(Server.userID, vacancy.id)
+                            .subscribeOn(Schedulers.io())
+                            .unsubscribeOn(Schedulers.computation())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe({
+                                Server.toask(activity, "Cadastrado, Boa sorte!")
+                                removeItem(vacancy)
+                            }, { err ->
+                                Server.toask(activity, "Erro ${err.message}")
+                            })
+
+                    dialog?.dismiss()
+                }
+            else
+                btSave.visibility = Button.GONE
+
 
             builder.setView(view)
             dialog = builder.create()
             dialog?.show()
         }
 
-        if (this.type) {
-            p0.btDelete.visibility = ImageButton.GONE
-        } else {
-            p0.btDelete.setOnClickListener { }
-        }
 
     }
 
     class Holder(view: View) : RecyclerView.ViewHolder(view) {
         val name = view.findViewById<TextView>(R.id.txVancacy)!!
         val bt = view.findViewById<RelativeLayout>(R.id.bt)!!
-        val btDelete = view.findViewById<ImageButton>(R.id.btDelete)!!
     }
 }
