@@ -89,7 +89,7 @@ class EditStudentActivity : AppCompatActivity() {
 
     @SuppressLint("CheckResult")
     private fun update(student: Student) {
-        Log.i("Company.toString()", student.toString())
+        Log.i("Student.toString()", student.toString())
         if (student == this.student) {
             Server.toask(this, "Você não modificou nada.", false)
         } else {

@@ -71,6 +71,9 @@ interface APIService {
     @GET("vacancy/{student_id}")
     fun getAllVacancyNoRegister(@Path("student_id") id: Int): Observable<List<Vacancy>>
 
+    @GET("student/vacancy/{student_id}")
+    fun getVacanciesRegister(@Path("student_id") id: Int): Observable<List<Vacancy>>
+
     @POST("vacancy/register")
     fun registerVacancyStudent(@Header("student_id") student_id: Int,
                                @Header("vacancy_id") vacancy_id: Int): Observable<Response>

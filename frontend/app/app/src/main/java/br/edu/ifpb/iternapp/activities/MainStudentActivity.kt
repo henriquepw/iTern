@@ -9,7 +9,8 @@ import android.support.v4.app.Fragment
 import android.view.Menu
 import android.view.MenuItem
 import br.edu.ifpb.iternapp.R
-import br.edu.ifpb.iternapp.fragments.HomeFragment
+import br.edu.ifpb.iternapp.fragments.company.HomeFragmentCompany
+import br.edu.ifpb.iternapp.fragments.student.HomeFragmentStudent
 import br.edu.ifpb.iternapp.fragments.student.SearchFragmentStudent
 import br.edu.ifpb.iternapp.fragments.student.SettingsFragmentStudent
 import kotlinx.android.synthetic.main.activity_main.*
@@ -22,10 +23,7 @@ class MainStudentActivity : AppCompatActivity() {
             .OnNavigationItemSelectedListener { item ->
                 when (item.itemId) {
                     R.id.navHome -> {
-                        val user = intent.getStringExtra("user")
-                        val frag = HomeFragment()
-                        frag.setTitule(user)
-                        startFragment(frag)
+                        startFragment(HomeFragmentStudent())
                         return@OnNavigationItemSelectedListener true
                     }
                     R.id.navSettings -> {
@@ -45,7 +43,7 @@ class MainStudentActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        startFragment(HomeFragment())
+        startFragment(HomeFragmentCompany())
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }

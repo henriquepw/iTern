@@ -36,7 +36,7 @@ class SearchFragmentStudent : Fragment() {
 
         updateVacancys()
 
-        listVagacy.layoutManager = LinearLayoutManager(activity, LinearLayout.VERTICAL, false)
+        list.layoutManager = LinearLayoutManager(activity, LinearLayout.VERTICAL, false)
     }
 
     private fun popupOnCLick() {
@@ -60,7 +60,7 @@ class SearchFragmentStudent : Fragment() {
                 .subscribe({
                     vacancys.clear()
                     vacancys.addAll(it)
-                    listVagacy.adapter = VacancyAdapter(vacancys, activity=activity!!)
+                    list.adapter = VacancyAdapter(vacancys, activity=activity!!)
                 }, { err ->
                     Server.toask(activity!!, "Erro ${err.message}")
                 })

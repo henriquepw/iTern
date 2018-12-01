@@ -15,7 +15,8 @@ module.exports = app => {
 
     const update = (req, res) => {
         const student = { ...req.body }
-
+        console.log(student)
+        
         app.db('student')
             .update(student)
             .where({ 
