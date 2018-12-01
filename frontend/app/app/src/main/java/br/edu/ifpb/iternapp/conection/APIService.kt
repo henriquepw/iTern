@@ -38,7 +38,10 @@ interface APIService {
     fun insertStudentCourse(@Body course: Course): Observable<Response>
 
     @GET("student/course/{id}")
-    fun getALLStudentCourseById(@Header("id") id: Int): Observable<List<Course>>
+    fun getALLStudentCourseById(@Path("id") id: Int): Observable<List<Course>>
+
+    @GET("student/company/{id}")
+    fun getStudentByCompany(@Path("id") id: Int): Observable<List<Student>>
 
     /***********
      * Company *

@@ -16,7 +16,7 @@ module.exports = app => {
     const update = (req, res) => {
         const student = { ...req.body }
         console.log(student)
-        
+
         app.db('student')
             .update(student)
             .where({ 
@@ -74,6 +74,17 @@ module.exports = app => {
             .catch(err => res.status(500).send(err))
     }
 
+    const getByCompany = (req, res) => {
+        app.db('student')
+            .select()
+            .then(student => {
+                delete student.id
+                console.log(student)
+                res.json(student)
+            })
+            .catch(err => res.status(500).send(err))
+    }
+
     const insertPhone = (req, res) => {
         phone = { ...req.body }
 
@@ -112,6 +123,7 @@ module.exports = app => {
         insertCourse,
         get, 
         getById, 
+        getByCompany,
         getAllPhone,
         update, 
         remove, 

@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:elevation="5dp"
+            android:visibility="gone"
             card_view:cardCornerRadius="5dp">
 
             <RelativeLayout
