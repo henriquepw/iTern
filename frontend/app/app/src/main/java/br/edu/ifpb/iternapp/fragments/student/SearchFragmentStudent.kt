@@ -28,25 +28,13 @@ class SearchFragmentStudent : Fragment() {
         return inflater.inflate(R.layout.fragment_search, container, false)
     }
 
-    @SuppressLint("CheckResult")
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         ib_popup_menu.setOnClickListener { popupOnCLick() }
 
-        val vacancys = ArrayList<Vacancy>()
-        val servise = Server.service
-
-        servise.getAllVacancy()
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    vacancys.addAll(it)
-                    listVagacy.adapter = VacancyAdapter(vacancys, activity=activity!!)
-                }, { err ->
-                    Server.toask(activity!!, "Erro ${err.message}")
-                })
+        updateVacancys()
 
         listVagacy.layoutManager = LinearLayoutManager(activity, LinearLayout.VERTICAL, false)
     }
@@ -60,5 +48,22 @@ class SearchFragmentStudent : Fragment() {
         popup.show()
     }
 
+    @SuppressLint("CheckResult")
+    fun updateVacancys(){
+        val vacancys = ArrayList<Vacancy>()
+        val servise = Server.service
+
+        servise.getAllVacancyNoRegister(Server.userID)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    vacancys.clear()
+                    vacancys.addAll(it)
+                    listVagacy.adapter = VacancyAdapter(vacancys, activity=activity!!)
+                }, { err ->
+                    Server.toask(activity!!, "Erro ${err.message}")
+                })
+    }
 }
 

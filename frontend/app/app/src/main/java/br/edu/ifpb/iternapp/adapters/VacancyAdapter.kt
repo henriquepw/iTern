@@ -3,8 +3,6 @@ package br.edu.ifpb.iternapp.adapters
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
-import android.app.Service
-import android.support.v4.app.DialogFragment
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -18,11 +16,9 @@ import br.edu.ifpb.iternapp.conection.Server
 import br.edu.ifpb.iternapp.entities.Vacancy
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.dialog_choice.view.*
-import kotlinx.android.synthetic.main.fragment_search.*
 
 class VacancyAdapter(
-        private val vacancys: ArrayList<Vacancy>,
+        private val vacancies: ArrayList<Vacancy>,
         private val type: Boolean = true,
         private val activity: Activity) : RecyclerView.Adapter<VacancyAdapter.Holder>() {
 
@@ -34,12 +30,18 @@ class VacancyAdapter(
     }
 
     override fun getItemCount(): Int {
-        return vacancys.size
+        return vacancies.size
+    }
+
+    private fun removeItem(vacancy: Vacancy){
+        var pos = vacancies.indexOf(vacancy)
+        vacancies.remove(vacancy)
+        notifyItemRemoved(pos)
     }
 
     @SuppressLint("InflateParams", "SetTextI18n")
     override fun onBindViewHolder(p0: Holder, p1: Int) {
-        val vacancy = vacancys[p1]
+        val vacancy = vacancies[p1]
         p0.name.text = vacancy.name
 
         p0.bt.setOnClickListener {
@@ -68,6 +70,7 @@ class VacancyAdapter(
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({
                             Server.toask(activity, "Cadastrado, Boa sorte!")
+                            removeItem(vacancy)
                         }, { err ->
                             Server.toask(activity, "Erro ${err.message}")
                         })

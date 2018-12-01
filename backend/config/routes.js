@@ -35,6 +35,9 @@ module.exports = app => {
     app.route('/vacancy/register')
         .post(app.api.vacancy.register)
         .get(app.api.vacancy.getRegisters)
+
+    app.route('/vacancy/:student_id')
+        .get(app.api.vacancy.getByNoId)
     
     app.route('/network')
         .post(app.api.network.insert)

@@ -1,7 +1,9 @@
 module.exports = app => {
     const insert = (req, res) => {
-        const vacancy = { ...req.body }
-        console.log({ ...vacancy })
+        const vacancy = { ...req.body
+        }
+        console.log({ ...vacancy
+        })
 
         app.db('vacancy')
             .insert(vacancy)
@@ -15,10 +17,28 @@ module.exports = app => {
             .catch(err => res.status(500).send(err))
     }
 
-    const get = (req, res) => {
+    const get = (_, res) => {
         app.db('vacancy')
             .select()
             .then(vacancys => res.json(vacancys))
+            .catch(err => res.status(500).send(err))
+    }
+
+    const getByNoId = (req, res) => {
+        studentId = req.params.student_id
+        console.log(studentId)
+        app.db('vacancy')
+            .select()
+            .whereRaw(
+                 `id in (
+                    select distinct vacancy_id
+                    from student_vacancy
+                    where student_id <> ${studentId})`)
+            .orderBy('name')
+            .then(vacancys => {
+                console.log(vacancys)
+                res.json(vacancys)
+            })
             .catch(err => res.status(500).send(err))
     }
 
@@ -32,11 +52,17 @@ module.exports = app => {
 
         app.db('student_vacancy')
             .insert(student_vacancy)
-            .then(id => { res.json({ id: 1 }) })
-            .catch(err => { res.status(500).send(err) })
+            .then(_ => {
+                res.json({
+                    id: 1
+                })
+            })
+            .catch(err => {
+                res.status(500).send(err)
+            })
     }
 
-    const getRegisters = (req, res) => {
+    const getRegisters = (_, res) => {
         app.db('student_vacancy')
             .select()
             .then(registers => res.json(registers))
@@ -45,7 +71,8 @@ module.exports = app => {
 
     return {
         insert,
-        get, getRegisters,
+        get, getByNoId,
+        getRegisters,
         register
     }
 }
