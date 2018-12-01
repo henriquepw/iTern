@@ -61,6 +61,14 @@ SELECT vacancy.*
 FROM vacancy
 WHERE vacancy.company_id = x
 
+SELECT student.*
+FROM student
+WHERE id IN (
+	SELECT student_vacancy.student_id
+	FROM student_vacancy, vacancy
+	WHERE student_vacancy.vacancy_id = vacancy.id AND vacancy.company_id = x
+	)
+
 SELECT * 
 FROM vacancy v, student_vacancy sv
 WHERE id IN (
