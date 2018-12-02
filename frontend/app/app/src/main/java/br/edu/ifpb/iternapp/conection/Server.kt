@@ -2,6 +2,7 @@ package br.edu.ifpb.iternapp.conection
 
 import android.content.Context
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.github.rtoshiro.util.format.SimpleMaskFormatter
 import com.github.rtoshiro.util.format.text.MaskTextWatcher
@@ -11,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object Server {
     private val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.0.198:3000/")
+            .baseUrl("http://itern-node-com.umbler.net/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
@@ -35,7 +36,7 @@ object Server {
         Toast.makeText(context, msg, dur).show()
     }
 
-    fun setMask(view: EditText, mask: String) {
+    fun setMask(view: TextView, mask: String) {
         val mtw = MaskTextWatcher(view, SimpleMaskFormatter(mask))
         view.addTextChangedListener(mtw)
     }

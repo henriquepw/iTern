@@ -96,7 +96,7 @@ class LoginActivity : AppCompatActivity() {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({ res ->
                             Server.userID = res.id
-                            Server.toask(this, "${res.id}", false)
+                            //Server.toask(this, "${res.id}", false)
 
                             intent = Intent(baseContext, MainStudentActivity::class.java)
                             finishRequest(intent)

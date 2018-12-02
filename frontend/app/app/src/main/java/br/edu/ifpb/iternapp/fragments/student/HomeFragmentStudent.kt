@@ -36,7 +36,7 @@ class HomeFragmentStudent : Fragment() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({vacancies ->
                     val v = vacancies as ArrayList
-                    list.adapter = VacancyAdapter(vacancies = v, activity = activity!!)
+                    list.adapter = VacancyAdapter(vacancies = v, type = false, activity = activity!!)
                     txSize.text =  "${vacancies.size}"
                 }, { err ->
                     Server.toask(activity!!, "Erro: ${err.message}")
