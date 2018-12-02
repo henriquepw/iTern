@@ -91,6 +91,7 @@ class AddVacancyActivity : AppCompatActivity() {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({
                             Server.toask(this, "Vaga Cadastrada", false)
+                            finish()
                         }, { err ->
                             Server.toask(this, err.message.toString())
                             Log.v("Error", err.message)
