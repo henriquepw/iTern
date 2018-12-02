@@ -20,7 +20,7 @@ module.exports = app => {
     app.route('/student/company/:id')
         .get(app.api.student.getByCompany)
 
-    app.route('/student/vacancy/:id')
+    app.route('/vacancy/student/:id')
         .get(app.api.student.getByVacancy)
 
     app.route('/student/:id')

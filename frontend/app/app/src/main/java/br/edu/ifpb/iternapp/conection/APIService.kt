@@ -43,7 +43,7 @@ interface APIService {
     @GET("student/company/{id}")
     fun getStudentByCompany(@Path("id") id: Int): Observable<List<Student>>
 
-    @GET("student/vacancy/{id}")
+    @GET("vacancy/student/{id}")
     fun getStudentByVacancy(@Path("id") id: Int): Observable<List<Student>>
 
     /***********

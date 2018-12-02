@@ -44,7 +44,7 @@ class SearchFragmentCompany : Fragment() {
 
                     spVacancies.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
                         val vacancy = vacancies[position]
-
+                        Server.toask(activity!!, "${vacancy.id}")
                         Server.service.getStudentByVacancy(vacancy.id)
                                 .subscribeOn(Schedulers.io())
                                 .unsubscribeOn(Schedulers.computation())

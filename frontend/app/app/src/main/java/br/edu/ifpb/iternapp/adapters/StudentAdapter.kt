@@ -59,7 +59,7 @@ class StudentAdapter(
             val txNacionalidade = view.findViewById<TextView>(R.id.txNacionalidade)
             val txNaturalidade = view.findViewById<TextView>(R.id.txNaturalidade)
 
-            txName.text = student.name
+            //txName.text = student.name
             txDate.text = student.birthday
             txStreet.text = student.street
             txNumber.text = "${student.number}"
