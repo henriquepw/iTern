@@ -17,6 +17,12 @@ module.exports = app => {
     app.route('/student/vacancy/:student_id')
         .get(app.api.vacancy.getByStudentId)
 
+    app.route('/student/company/:id')
+        .get(app.api.student.getByCompany)
+
+    app.route('/student/vacancy/:id')
+        .get(app.api.student.getByVacancy)
+
     app.route('/student/:id')
         .delete(app.api.student.remove)
         .put(app.api.student.update)

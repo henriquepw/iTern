@@ -32,20 +32,9 @@ class SearchFragmentStudent : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        ib_popup_menu.setOnClickListener { popupOnCLick() }
-
         updateVacancys()
 
-        list.layoutManager = LinearLayoutManager(activity, LinearLayout.VERTICAL, false)
-    }
-
-    private fun popupOnCLick() {
-        var popup = PopupMenu(activity, ib_popup_menu)
-        popup.inflate(R.menu.menu_search)
-
-        //popup.setOnMenuItemClickListener { }
-
-        popup.show()
+        list.layoutManager = LinearLayoutManager(activity!!, LinearLayout.VERTICAL, false)
     }
 
     @SuppressLint("CheckResult")

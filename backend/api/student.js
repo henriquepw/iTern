@@ -75,12 +75,43 @@ module.exports = app => {
     }
 
     const getByCompany = (req, res) => {
+        console.log(req.params.id)
         app.db('student')
             .select()
-            .then(student => {
-                delete student.id
-                console.log(student)
-                res.json(student)
+            .whereRaw(
+                `id IN (
+                    SELECT sv.student_id
+                    FROM student_vacancy sv, vacancy v
+                    WHERE sv.vacancy_id = v.id AND v.company_id = ${req.params.id});
+                `)
+            .then(students => {
+                st = students.map(student => {
+                    delete student.id
+                    return student
+                })
+                console.log(st)
+                res.json(st)
+            })
+            .catch(err => res.status(500).send(err))
+    }
+
+    const getByVacancy = (req, res) => {
+        console.log(req.params.id)
+        app.db('student')
+            .select()
+            .whereRaw(
+                `id IN (
+                    SELECT student_id
+                    FROM student_vacancy
+                    WHERE vacancy_id = ${req.params.id});
+                `)
+            .then(students => {
+                st = students.map(student => {
+                    delete student.id
+                    return student
+                })
+                console.log(st)
+                res.json(st)
             })
             .catch(err => res.status(500).send(err))
     }
@@ -124,6 +155,7 @@ module.exports = app => {
         get, 
         getById, 
         getByCompany,
+        getByVacancy,
         getAllPhone,
         update, 
         remove, 

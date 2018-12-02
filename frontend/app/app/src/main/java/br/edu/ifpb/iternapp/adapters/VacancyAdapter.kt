@@ -53,14 +53,12 @@ class VacancyAdapter(
             val txtScholarship = view.findViewById<TextView>(R.id.txtScholarship)
             val txtWorkload = view.findViewById<TextView>(R.id.txtWorkload)
             val txtDescription = view.findViewById<TextView>(R.id.txtDescription)
-            val txtAreas = view.findViewById<TextView>(R.id.txtAreas)
 
             txtName.text = vacancy.name
             txtScholarship.text = "${txtScholarship.text}${vacancy.scholarship}"
             txtWorkload.text = "${txtWorkload.text}${vacancy.workload}"
             txtDescription.text = "${txtDescription.text}${vacancy.description}"
             txtCompany.text = "${txtCompany.text}${vacancy.company_id}"
-            txtAreas.text = "${txtAreas.text}Pegar Areas ainda"
 
             val btSave = view.findViewById<Button>(R.id.btSave)
 
