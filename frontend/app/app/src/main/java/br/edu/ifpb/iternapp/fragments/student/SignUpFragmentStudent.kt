@@ -71,7 +71,7 @@ class SignUpFragmentStudent : Fragment() {
             for (tx in textViews)
                 tx.error = null
 
-            /*if (state == null) {
+            if (state == null) {
                 spStates.error = "Esse campo precisa ser preenchido"
                 focusView = spStates
                 cancel = true
@@ -99,7 +99,7 @@ class SignUpFragmentStudent : Fragment() {
                 txPhone.error = "Campo incompleto"
                 focusView = txPhone
                 cancel = true
-            }*/
+            }
 
             for (tx in 0 until textViews.size) {
                 if (TextUtils.isEmpty(textViews[tx].text.toString())) {
