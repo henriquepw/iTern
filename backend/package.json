@@ -15,7 +15,7 @@
     "cors": "^2.8.4",
     "express": "^4.16.4",
     "jwt-simple": "^0.5.5",
-    "knex": "^0.19.5",
+    "knex": "^2.4.0",
     "pg": "^7.5.0"
   },
   "devDependencies": {
